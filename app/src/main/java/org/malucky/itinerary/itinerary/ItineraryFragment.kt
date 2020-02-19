@@ -1,5 +1,7 @@
-package org.malucky.itinerary
+package org.malucky.itinerary.itinerary
 
+import org.malucky.itinerary.BaseFragment
+import org.malucky.itinerary.R
 
 
 class ItineraryFragment : BaseFragment() {

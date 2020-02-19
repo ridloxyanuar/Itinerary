@@ -5,14 +5,14 @@
 
     <fragment
             android:id="@+id/homeFragment"
-            android:name="org.malucky.itinerary.HomeFragment"
+            android:name="org.malucky.itinerary.dashboard.HomeFragment"
             android:label="HomeFragment" />
     <fragment
             android:id="@+id/itineraryFragment"
-            android:name="org.malucky.itinerary.ItineraryFragment"
+            android:name="org.malucky.itinerary.itinerary.ItineraryFragment"
             android:label="ItineraryFragment" />
     <fragment
             android:id="@+id/profileFragment"
-            android:name="org.malucky.itinerary.ProfileFragment"
+            android:name="org.malucky.itinerary.profile.ProfileFragment"
             android:label="ProfileFragment" />
 </navigation>
