@@ -1,5 +1,6 @@
 package org.malucky.itinerary.dashboard
 
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.malucky.itinerary.BaseFragment
 import org.malucky.itinerary.R
 
@@ -18,7 +19,9 @@ class HomeFragment : BaseFragment() {
 
 
     override fun onFragmentCreated() {
-
+        btn_bdg.setOnClickListener{
+            navigate.bandung(activity!!)
+        }
     }
 
 

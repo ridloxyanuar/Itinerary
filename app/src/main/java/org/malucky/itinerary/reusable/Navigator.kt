@@ -3,6 +3,7 @@ package org.malucky.itinerary.reusable
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import org.malucky.itinerary.BandungActivity
 import org.malucky.itinerary.MainActivity
 import org.malucky.itinerary.SignInActivity
 import org.malucky.itinerary.SignUpActivity
@@ -36,6 +37,10 @@ class Navigator @Inject constructor() {
 
     fun signup(activity: Activity) {
         goto(activity, SignUpActivity.getCallingIntent(activity))
+    }
+
+    fun bandung(activity: Activity) {
+        goto(activity, BandungActivity.getCallingIntent(activity))
     }
 
 }
