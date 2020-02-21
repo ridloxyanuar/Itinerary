@@ -22,6 +22,9 @@ class SignInActivity : BaseActivity() {
         txt_btnDaftar.setOnClickListener {
             navigate.signup(this)
         }
+        btn_masuk.setOnClickListener {
+            navigate.mainActivity(this)
+        }
 
     }
 
