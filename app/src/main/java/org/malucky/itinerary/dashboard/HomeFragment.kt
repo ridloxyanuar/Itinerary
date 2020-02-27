@@ -19,9 +19,6 @@ class HomeFragment : BaseFragment() {
 
 
     override fun onFragmentCreated() {
-        btn_bdg.setOnClickListener{
-            navigate.bandung(activity!!)
-        }
     }
 
 
