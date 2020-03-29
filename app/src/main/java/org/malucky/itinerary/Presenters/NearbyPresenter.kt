@@ -1,9 +1,6 @@
-package com.devjurnal.nearbyplacerxkotlinandroid.Presenters
+package org.malucky.itinerary.Presenters
 
 
-/**
- * Created by DevJurnal on 2/18/18.
- */
 interface NearbyPresenter {
 //    fun addList(result: List<ResultsItem?>?)
 

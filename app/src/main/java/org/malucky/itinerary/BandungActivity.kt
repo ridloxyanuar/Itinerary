@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.devjurnal.nearbyplacerxkotlinandroid.Presenters.NearbyPresenterImp
 import kotlinx.android.synthetic.main.activity_bandung.*
 import org.malucky.itinerary.Presenters.NearbyAdapter
+import org.malucky.itinerary.Presenters.NearbyPresenterImp
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.data.ResultsItem
 

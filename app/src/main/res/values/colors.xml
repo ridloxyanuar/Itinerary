@@ -328,4 +328,12 @@
     <color name="toasterSuccess">#d6f9f6</color>
     <color name="toasterError">#ffe5e5</color>
     <color name="toasterText">#b3000000</color>
+
+    <!--colors for modern ui-->
+    <color name="whiteTextColor">#fff</color>
+    <color name="primaryTextColor">#00a5ff</color>
+    <color name="loginBkColor">#f0f0f0</color>
+
+    <!--colros for card-->
+    <color name="whiteCardColor">#fff</color>
 </resources>

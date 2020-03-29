@@ -7,4 +7,11 @@
     <dimen name="field_height">60dp</dimen>
     <dimen name="cornerRadius">4dp</dimen>
     <dimen name="cardElevation">6dp</dimen>
+
+    <dimen name="headerTextSize">22sp</dimen>
+    <dimen name="newsMoreTextSize">12sp</dimen>
+    <dimen name="loginCardRadius">20dp</dimen>
+    <dimen name="loginViewsMargin">16dp</dimen>
+
+    <dimen name="signup_text_margin_top">10dp</dimen>
 </resources>

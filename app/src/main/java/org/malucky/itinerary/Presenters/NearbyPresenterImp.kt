@@ -1,4 +1,4 @@
-package com.devjurnal.nearbyplacerxkotlinandroid.Presenters
+package org.malucky.itinerary.Presenters
 
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers

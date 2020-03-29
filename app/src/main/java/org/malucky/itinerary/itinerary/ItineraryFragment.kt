@@ -2,10 +2,10 @@ package org.malucky.itinerary.itinerary
 
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.devjurnal.nearbyplacerxkotlinandroid.Presenters.NearbyPresenterImp
 import kotlinx.android.synthetic.main.fragment_itinerary.*
 import org.malucky.itinerary.BaseFragment
 import org.malucky.itinerary.Presenters.NearbyAdapter
+import org.malucky.itinerary.Presenters.NearbyPresenterImp
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.data.ResultsItem

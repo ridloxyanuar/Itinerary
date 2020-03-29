@@ -9,9 +9,9 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/itineraryFragment"
-        android:icon="@drawable/ic_share_black_24dp"
-        android:title="History"
         android:enabled="true"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="Itinerary"
         app:showAsAction="always" />
     <item
         android:id="@+id/profileFragment"

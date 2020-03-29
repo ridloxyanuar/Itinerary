@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Nama Aplikasi"
+        android:text="Itinerary"
         android:textSize="33sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/et_fullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,52 +35,52 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/et_email_daftar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Alamat Email"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editText4"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintEnd_toEndOf="@+id/et_fullName"
+        app:layout_constraintStart_toStartOf="@+id/et_fullName"
+        app:layout_constraintTop_toBottomOf="@+id/et_fullName" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/et_pass_daftar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Kata Sandi"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText5"
-        app:layout_constraintStart_toStartOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintEnd_toEndOf="@+id/et_email_daftar"
+        app:layout_constraintStart_toStartOf="@+id/et_email_daftar"
+        app:layout_constraintTop_toBottomOf="@+id/et_email_daftar" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/et_konf_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Ulangi Kata Sandi"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText6"
-        app:layout_constraintStart_toStartOf="@+id/editText6"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintEnd_toEndOf="@+id/et_pass_daftar"
+        app:layout_constraintStart_toStartOf="@+id/et_pass_daftar"
+        app:layout_constraintTop_toBottomOf="@+id/et_pass_daftar" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_daftaar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_button"
         android:text="Daftar"
         android:textColor="#ffffff"
-        app:layout_constraintEnd_toEndOf="@+id/editText7"
-        app:layout_constraintStart_toStartOf="@+id/editText7"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintEnd_toEndOf="@+id/et_konf_pass"
+        app:layout_constraintStart_toStartOf="@+id/et_konf_pass"
+        app:layout_constraintTop_toBottomOf="@+id/et_konf_pass" />
 
     <TextView
         android:id="@+id/textView12"
@@ -92,7 +92,7 @@
         android:text="Sudah Punya Akun?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_daftaar" />
 
     <TextView
         android:id="@+id/txt_btnMasuk"

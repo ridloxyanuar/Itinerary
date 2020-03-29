@@ -33,6 +33,9 @@ data class ResultsItem(
 	@field:SerializedName("id")
 	val id: String? = null,
 
+	@field:SerializedName("photo_reference")
+	val photoReference: String? = null,
+
 	@field:SerializedName("photos")
 	val photos: List<PhotosItem?>? = null,
 
