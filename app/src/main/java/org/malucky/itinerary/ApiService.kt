@@ -10,4 +10,5 @@ interface ApiService {
     // request to Server
     @GET("json?location=-6.9150381,107.6186398&rankby=distance&type=tourist_attraction&key=AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
     fun getPlace(): Observable<ResponseServer>
+
 }

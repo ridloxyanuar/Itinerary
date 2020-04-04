@@ -1,6 +1,7 @@
 package org.malucky.itinerary.Presenters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import org.malucky.itinerary.R
+import org.malucky.itinerary.TerdekatActivity
 import org.malucky.itinerary.data.Kategori
+import org.malucky.itinerary.reusable.Navigator
 
 class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) :
     RecyclerView.Adapter<KategoriAdapter.ItemHolder>(){
+
+    var navigate: Navigator = Navigator()
 
     class ItemHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         var icons = itemView.findViewById<ImageView>(R.id.iv_kategori)
@@ -36,7 +41,10 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
         holder.titles.text = kategori.ket
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, kategori.ket, Toast.LENGTH_LONG).show()
+            if(kategori.ket.equals("Terdekat")){
+                val intent = Intent(context, TerdekatActivity::class.java)
+                context.startActivity(intent)
+            }
         }
 
     }

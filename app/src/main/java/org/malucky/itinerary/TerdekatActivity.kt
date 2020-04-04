@@ -7,26 +7,33 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bandung.*
+import kotlinx.android.synthetic.main.activity_terdekat.*
 import org.malucky.itinerary.Presenters.NearbyAdapter
 import org.malucky.itinerary.Presenters.NearbyPresenterImp
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.data.ResultsItem
 
-class BandungActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemClickListner{
+class TerdekatActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemClickListner {
 
     companion object {
         @JvmStatic
         fun getCallingIntent(activity: Activity): Intent {
-            return Intent(activity, BandungActivity::class.java)
+            return Intent(activity, TerdekatActivity::class.java)
         }
     }
 
     lateinit var presenter : NearbyPresenterImp
 
-    override fun getView(): Int = R.layout.activity_bandung
-
+    override fun getView(): Int = R.layout.activity_terdekat
 
     override fun onActivityCreated() {
+        toolbar_terdekat.setTitle("Terdekat Dengan Kamu")
+        setSupportActionBar(toolbar_terdekat)
+
+        toolbar_terdekat.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar_terdekat.setNavigationOnClickListener {
+            finish()
+        }
         initPresenter()
         initView()
     }
@@ -41,8 +48,8 @@ class BandungActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
 
     override fun Success(datas: List<ResultsItem?>) {
         var adapter = NearbyAdapter(datas,this)
-        rv_bandung.layoutManager = LinearLayoutManager(applicationContext)
-        rv_bandung.adapter = adapter
+        rv_terdekat.layoutManager = LinearLayoutManager(applicationContext)
+        rv_terdekat.adapter = adapter
     }
 
     override fun Error(pesan: String) {
@@ -52,4 +59,6 @@ class BandungActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
     override fun onItemClick(item: List<ResultsItem?>, position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
 }
