@@ -1,25 +1,18 @@
 package org.malucky.itinerary.Presenters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.item_list_cart.view.*
-import kotlinx.android.synthetic.main.place_list_item.view.*
-import org.malucky.itinerary.CartActivity
 import org.malucky.itinerary.R
-import org.malucky.itinerary.TerdekatActivity
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
 
@@ -40,14 +33,16 @@ class CartAdapter(private val items: List<CartLocation>, private val context: Co
         userDatabase = CartDatabase.getInstance(context)
         val hapus_lokasi = holder.itemView.ib_delete
         hapus_lokasi.setOnClickListener {
-            deleted()
+            deleted(position)
+            notifyItemRemoved(position)
+            this.notifyDataSetChanged()
         }
 
     }
 
-    private fun deleted() {
+    private fun deleted(position: Int) {
         Completable.fromAction {
-            userDatabase!!.cartLocationDatabaseDAO.clear()
+            userDatabase!!.cartLocationDatabaseDAO.deleteID(items.get(position))
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : CompletableObserver {
@@ -55,8 +50,11 @@ class CartAdapter(private val items: List<CartLocation>, private val context: Co
 
                 override fun onComplete() {
                     toast("deleted successfully")
-                    val intent = Intent(context, CartActivity::class.java)
-                    context.startActivity(intent)
+                    val i = items.get(position)
+                    notifyItemRemoved(i.locId)
+
+//                    val intent = Intent(context, CartActivity::class.java)
+//                    context.startActivity(intent)
                 }
 
                 override fun onError(e: Throwable) {
@@ -87,6 +85,8 @@ class CartAdapter(private val items: List<CartLocation>, private val context: Co
         fun bindUI(result: CartLocation) = with(itemView) {
 
             tv_cart_name.text = result.namaLokasi
+            val lokasi = result.lat + " " + result.lng
+            txt_location.text = lokasi
 
 
         }

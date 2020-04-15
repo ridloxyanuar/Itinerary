@@ -36,6 +36,10 @@ class Navigator @Inject constructor() {
         goto(activity, SignUpActivity.getCallingIntent(activity))
     }
 
+    fun maps(activity: Activity) {
+        goto(activity, MapsActivity.getCallingIntent(activity))
+    }
+
     fun bandung(activity: Activity) {
         goto(activity, BandungActivity.getCallingIntent(activity))
     }

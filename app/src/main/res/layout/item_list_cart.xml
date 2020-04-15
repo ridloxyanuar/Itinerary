@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/ic_clear_black_24dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txt_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

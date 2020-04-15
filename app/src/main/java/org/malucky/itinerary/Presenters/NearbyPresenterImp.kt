@@ -9,9 +9,7 @@ import org.malucky.itinerary.common.constant.Urls
 import org.malucky.itinerary.data.ResponseServer
 import org.malucky.itinerary.data.ResultsItem
 
-/**
- * Created by DevJurnal on 2/18/18.
- */
+
 class NearbyPresenterImp : NearbyPresenter{
 
     var nearbyViews : NearbyViews? = null

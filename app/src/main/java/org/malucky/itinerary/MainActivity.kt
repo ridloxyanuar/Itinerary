@@ -6,13 +6,16 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.tasks.OnSuccessListener
 import kotlinx.android.synthetic.main.activity_main.*
+import org.malucky.itinerary.data.Location
 
 class MainActivity : BaseActivity() {
 
@@ -45,7 +48,20 @@ class MainActivity : BaseActivity() {
     }
 
     private fun currentLocation() {
-
+        // GET MY CURRENT LOCATION
+//        val mFusedLocation = Location.getFusedLocationProviderClient(this)
+//        mFusedLocation.lastLocation.addOnSuccessListener(this, object :
+//            OnSuccessListener<Location> {
+//            override fun onSuccess(location: Location?) {
+//                // Do it all with location
+//                Log.d("My Current location", "Lat : ${location?.latitude} Long : ${location?.longitude}")
+//                // Display in Toast
+//                Toast.makeText(this@MapsActivity,
+//                    "Lat : ${location?.latitude} Long : ${location?.longitude}",
+//                    Toast.LENGTH_LONG).show()
+//            }
+//
+//        })
     }
 
     fun Activity.hideKeyboard() {

@@ -1,6 +1,5 @@
 package org.malucky.itinerary.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.reactivex.Single
 
@@ -23,4 +22,7 @@ interface CartLocationDAO {
 
     @Query("SELECT * FROM cartLocation")
     fun getAllLocation(): Single<List<CartLocation>>
+
+    @Delete
+    fun deleteID(cart: CartLocation)
 }

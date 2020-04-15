@@ -1,6 +1,7 @@
 package org.malucky.itinerary.itinerary
 
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_itinerary.*
@@ -11,6 +12,7 @@ import org.malucky.itinerary.Presenters.NearbyPresenterImp
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.data.ResultsItem
+import org.malucky.itinerary.db.CartLocation
 
 
 class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationItemClickListner {
@@ -32,6 +34,7 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
     override fun onFragmentCreated() {
         initPresenter()
         initView()
+
 
 //        rv_itinerary.
     }
@@ -61,9 +64,36 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
         intent.putExtra("LOCATION_NAME", item.get(position)?.name)
         intent.putExtra("LOCATION_VICINITY", item.get(position)?.vicinity)
         intent.putExtra("LOCATION_RATING", item.get(position)?.rating)
-//        intent.putExtra("LOCATION_VICINITY", item.openingHours?.weekdayText)
+        intent.putExtra("LOCATION_LAT", item.get(position)?.geometry?.location?.lat)
+        intent.putExtra("LOCATION_LNG", item.get(position)?.geometry?.location?.lng)
         startActivity(intent)
     }
 
+    fun successGetData(list: List<CartLocation>) {
 
-}
+        if (list.isEmpty()){
+//            layout_peek.visibility = View.GONE
+            return
+        }else{
+//            layout_peek.visibility = View.VISIBLE
+        }
+
+//        var totalUang = 0
+        var jumlahPesanan = 0
+
+        for (keranjang in list){
+//            totalUang = totalUang + keranjang.totalPrice
+            jumlahPesanan = listOf(keranjang).size
+        }
+
+//        txt_item.text = "$jumlahPesanan items:"
+//        txt_total_harga.text = "Rp. $totalUang"
+
+
+//        layout_peek.setOnClickListener {
+
+        }
+    }
+
+
+//}

@@ -17,6 +17,7 @@ class DetailLocationActivity : BaseActivity() {
         toolbar_detail.setNavigationOnClickListener {
             finish()
         }
+
         txt_judul_detail.text = getIntent().getStringExtra("LOCATION_NAME")
         txt_vicinity_detail.text = getIntent().getStringExtra("LOCATION_VICINITY")
 //        image_car.setImageResource(getIntent().getStringExtra("CARLOGO").toInt())

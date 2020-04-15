@@ -13,4 +13,59 @@
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent" />
+
+<!--    <RelativeLayout-->
+<!--        android:background="@drawable/bg_button"-->
+<!--        android:id="@+id/layout_peek"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="45dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:padding="5dp"-->
+<!--        custom:layout_constraintBottom_toBottomOf="parent"-->
+<!--        custom:layout_constraintEnd_toEndOf="parent"-->
+<!--        custom:layout_constraintStart_toStartOf="parent">-->
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView"-->
+<!--                android:layout_width="16dp"-->
+<!--                android:layout_height="16dp"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                custom:srcCompat="@drawable/ic_pin_drop_black_24dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/txt_item"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="sans-serif"-->
+<!--                android:text="3 Lokasi"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="14sp" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/arrow_right"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            custom:srcCompat="@drawable/ic_navigate_next_black_24dp" />-->
+
+<!--    </RelativeLayout>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
