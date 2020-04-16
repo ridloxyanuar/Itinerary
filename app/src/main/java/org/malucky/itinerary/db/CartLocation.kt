@@ -16,25 +16,20 @@ class CartLocation{
     @ColumnInfo(name = "nama_lokasi")
     var namaLokasi: String = ""
 
-    @ColumnInfo(name = "latitude")
-    var lat: String = ""
-
-    @ColumnInfo(name = "longitude")
-    var lng: String = ""
+    @ColumnInfo(name = "jarak")
+    var jarak: String = ""
 
 
-    constructor(locId: Int, namaLokasi: String, lat: String, lng: String) {
+    constructor(locId: Int, namaLokasi: String, jarak: String) {
         this.locId = locId
         this.namaLokasi = namaLokasi
-        this.lat = lat
-        this.lng = lng
+        this.jarak = jarak
     }
 
     @Ignore
-    constructor(namaLokasi: String, lat: String, lng: String) {
+    constructor(namaLokasi: String, jarak: String) {
         this.namaLokasi = namaLokasi
-        this.lat = lat
-        this.lng = lng
+        this.jarak = jarak
     }
 
 

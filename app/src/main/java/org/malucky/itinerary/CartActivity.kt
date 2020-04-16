@@ -1,38 +1,35 @@
 package org.malucky.itinerary
 
 import android.content.Intent
-import android.location.Location
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.maps.model.LatLng
+import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_terdekat.*
 import org.malucky.itinerary.Presenters.CartAdapter
+import org.malucky.itinerary.Views.CartCallback
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
+import org.malucky.itinerary.db.CartLocationDAO
 import org.malucky.itinerary.util.bottomSheetConfirmationDialog
-import org.malucky.itinerary.util.haversine
-import java.util.*
-import kotlin.math.min
+import kotlin.collections.ArrayList
 
+
+// cobain dlo run
+//oke bentar bang
+//bisa bang, berati data nya tinggal send aja?
+/// YOIIII
+//// udah ya gw out
+//oke thanks bang
 
 class CartActivity : BaseActivity() {
 
-    private lateinit var trya: String
-    private var aturNama: String? = null
-    private var atur: String? = null
-    private var dataLokasi: String? = null
-    private var havLoga: Double? = null
     private var mainAd: CartAdapter? = null
-    private var latitudeLokasi: String? = null
-    private var namaLokasi: String? = null
-    private var longitudeLokasi: String? = null
     private var userDatabase: CartDatabase? = null
-
+    private lateinit var cartLocation: ArrayList<CartLocation>
 
     override fun getView() = R.layout.activity_cart
 
@@ -44,6 +41,7 @@ class CartActivity : BaseActivity() {
         toolbar_cart.setNavigationOnClickListener {
             finish()
         }
+        cartLocation = ArrayList()
         userDatabase = CartDatabase.getInstance(this)
         readData()
 
@@ -51,85 +49,52 @@ class CartActivity : BaseActivity() {
             navigate.mainActivity(this)
         }
 
-        btn_atur_perjalanan.setOnClickListener {
-//            for (i in dataLokasi.toString()){
-//                i.let {
-//                    toast("" + it)
-//                    toast(namaLokasi+ haversine(-6.9150381,107.6186398, latitudeLokasi!!.toDouble(), longitudeLokasi!!.toDouble())+ " km")
-//                }
-//            }
-//            toast(""+namaLokasi)
-//            toast(""+ haversine(-6.9150381,107.6186398, latitudeLokasi!!.toDouble(), longitudeLokasi!!.toDouble())+ " km")
-
-            val intent = Intent(this, AturActivity::class.java)
-            intent.putExtra("EXTRA_NAMA", aturNama)
-            intent.putExtra("EXTRA_DISTANCE", atur)
-            startActivity(intent)
-
-        }
-
         imageButton.setOnClickListener {
             bottomSheetConfirmationDialog("Pilih Lokasi")
-
-//            toast(distance.toString() + " km")
-
-            toast(""+ haversine(-6.9150381,107.6186398, -6.343773, 106.781054)+ " km")
-
-            val result : List<CartLocation>
-
-//            for ( in result){
-//                Log.i("lokasi", i.toString())
-//            }
-
         }
     }
 
+    private fun setupNavigatePenjalanan(listData: List<CartLocation>) {
+        btn_atur_perjalanan.setOnClickListener {
+            val intent = Intent(this@CartActivity, AturActivity::class.java)
+
+
+
+            val stringListCartLocation = Gson().toJson(listData)
+            intent.putExtra("EXTRA_NAME", stringListCartLocation)
+
+            // ini terlalu banyak masuk
+            // gw bantuin keluarin 1 1 ya
+            //oke bang
+
+            startActivity(intent)
+        }
+    }
+
+    private fun setupAdapter(result: List<CartLocation>) {
+        mainAd = CartAdapter(result, this@CartActivity, object : CartCallback {
+            override fun onItemClick(listData: List<CartLocation>) {
+                setupNavigatePenjalanan(listData)
+            }
+        })
+        rv_cart.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mainAd
+            adapter!!.notifyDataSetChanged()
+        }
+
+        rv_cart.setNestedScrollingEnabled(false)
+    }
+
+
     private fun readData() {
-        userDatabase!!.cartLocationDatabaseDAO.getAllLocation().observeOn(AndroidSchedulers.mainThread())
+        userDatabase!!.cartLocationDatabaseDAO.getAllLocation()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : DisposableSingleObserver<List<CartLocation>>() {
                 override fun onSuccess(result: List<CartLocation>) {
-                     mainAd = CartAdapter(result, this@CartActivity)
-                    rv_cart.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = mainAd
-                        mainAd!!.notifyDataSetChanged()
-                    }
-                    rv_cart.setNestedScrollingEnabled(false)
+                    setupAdapter(result)
 
-
-                    for (data in result){
-                        data.let {
-                             namaLokasi = it.namaLokasi
-                             latitudeLokasi = it.lat
-                             longitudeLokasi = it.lng
-
-                             havLoga = haversine(-6.9150381,107.6186398, latitudeLokasi!!.toDouble() , longitudeLokasi!!.toDouble())
-//                            toast(namaLokasi+latitudeLokasi+longitudeLokasi)
-//                                toast(namaLokasi+ havLoga +" km")
-
-                            val hasilHaversine = doubleArrayOf(havLoga!!.toDouble() * 1000)
-
-                            val hasil = namaLokasi+ havLoga!!.toDouble() + " km"
-
-                            for (i in hasilHaversine.indices) {
-//                                    toast("Ascending : "+hasilHaversine.sortedArray()[i] + " m")
-                                    aturNama = namaLokasi.toString()
-                                    atur = "" + hasilHaversine.sortedDescending()[i] + " m"
-                                    toast(aturNama + atur)
-                                Log.d(aturNama, atur)
-
-                                mainAd?.notifyDataSetChanged()
-
-                                trya = aturNama + atur
-
-
-                            }
-                        }
-                        dataLokasi = namaLokasi + havLoga.toString() + " km"
-//                        toast(dataLokasi.toString())
-                    }
-                    toast(""+result.size)
                 }
 
                 override fun onError(e: Throwable) {
@@ -140,7 +105,7 @@ class CartActivity : BaseActivity() {
 
 
     private fun toast(message: String) {
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 

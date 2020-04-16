@@ -1,8 +1,12 @@
 package org.malucky.itinerary
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_atur.*
+import org.malucky.itinerary.db.CartLocation
+
 
 class AturActivity : AppCompatActivity() {
 
@@ -10,7 +14,18 @@ class AturActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_atur)
 
-        textView5.text = getIntent().getStringExtra("EXTRA_NAME")
-        textView10.text = getIntent().getStringExtra("EXTRA_DISTANCE")
+        val getIntentStringChartLocation = getIntent().getStringExtra("EXTRA_NAME")
+        val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type
+        val listDataChartLocation = Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
+
+        // bikinin for kotlin dong lupa kwkwkw
+        for (i in listDataChartLocation) {
+
+            textView5.append(i.namaLokasi + " \n" + i.jarak +" \n\n")
+//            textView10.append(i.jarak + " ")
+
+
+        }
+
     }
 }

@@ -13,16 +13,52 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.item_list_cart.view.*
 import org.malucky.itinerary.R
+import org.malucky.itinerary.Views.CartCallback
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
+import java.util.*
+import kotlin.Comparator
 
-class CartAdapter(private val items: List<CartLocation>, private val context: Context) :
+class CartAdapter(
+    private val items: List<CartLocation>,
+    private val context: Context,
+    private val callback: CartCallback
+) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+
+    init {
+        sortData()
+    }
 
     private lateinit var userDatabase: CartDatabase
 
+
+    private fun sortData() {
+
+        val tempListData = mutableListOf<CartLocation>()
+
+        tempListData.addAll(items)
+        Collections.sort(tempListData, object : Comparator<CartLocation> {
+            override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
+                return cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!)
+            }
+        })
+        callback.onItemClick(tempListData)
+    }
+
+    private fun cleaningJarak(jarak: String): Int {
+        return jarak.replace(" m", "").toInt()
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list_cart, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.item_list_cart,
+                parent,
+                false
+            )
+        )
 
     }
 
@@ -51,10 +87,7 @@ class CartAdapter(private val items: List<CartLocation>, private val context: Co
                 override fun onComplete() {
                     toast("deleted successfully")
                     val i = items.get(position)
-                    notifyItemRemoved(i.locId)
-
-//                    val intent = Intent(context, CartActivity::class.java)
-//                    context.startActivity(intent)
+                    notifyDataSetChanged()
                 }
 
                 override fun onError(e: Throwable) {
@@ -63,33 +96,19 @@ class CartAdapter(private val items: List<CartLocation>, private val context: Co
             })
     }
 
-//    private fun readData() {
-//        userDatabase!!.cartLocationDatabaseDAO.getAllLocation().observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(object : DisposableSingleObserver<List<CartLocation>>() {
-//                override fun onSuccess(result: List<CartLocation>) {
-//
-//                }
-//
-//                override fun onError(e: Throwable) {
-//                    toast("Empty data")
-//                }
-//            })
-//    }
-
     private fun toast(s: String) {
-        Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
     }
 
-    inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindUI(result: CartLocation) = with(itemView) {
 
             tv_cart_name.text = result.namaLokasi
-            val lokasi = result.lat + " " + result.lng
-            txt_location.text = lokasi
+            txt_location.text = result.jarak
 
 
         }
-
     }
+
+
 }

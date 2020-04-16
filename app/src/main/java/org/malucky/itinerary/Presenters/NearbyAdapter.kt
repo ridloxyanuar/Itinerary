@@ -17,16 +17,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import kotlinx.android.synthetic.main.item_list_cart.view.*
 import kotlinx.android.synthetic.main.place_list_item.view.*
 import org.malucky.itinerary.CartActivity
 import org.malucky.itinerary.R
 import org.malucky.itinerary.data.ResultsItem
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
+import org.malucky.itinerary.util.haversine
 
 
 class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItemClickListner) : RecyclerView.Adapter<NearbyAdapter.MyHolder>() {
-     var ambilData : List<ResultsItem?>
+    private lateinit var jarak: String
+    var ambilData : List<ResultsItem?>
      lateinit var context: Context
     init {
         this.ambilData = data
@@ -56,20 +59,33 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 
         userDatabase = CartDatabase.getInstance(context)
 
+        //ini fungsi tombolnya
         add_location.setOnClickListener {
-            inserta(ambilData.get(position)?.name.toString(),ambilData.get(position)?.geometry?.location?.lat.toString(),ambilData.get(position)?.geometry?.location?.lng.toString())
+            val latitude = ambilData.get(position)?.geometry?.location?.lat.toString()
+            val longitude = ambilData.get(position)?.geometry?.location?.lng.toString()
+
+            val havLoga = haversine(-6.9150381,107.6186398, latitude.toDouble() , longitude.toDouble())
+
+            val hasilHaversine = (havLoga * 1000).toInt()
+
+            if (hasilHaversine > 1000){
+                val bagi = (hasilHaversine / 1000).toDouble()
+                jarak = bagi.toString() + " km"
+            }else {
+                jarak = hasilHaversine.toString() + " m"
+            }
+
+
+            inserta(ambilData.get(position)?.name.toString(), jarak)
             val intent = Intent(context, CartActivity::class.java)
             context.startActivity(intent)
         }
 
-        holder.itemView.setOnClickListener{
-            holder.bind(ambilData,position,onClickListener)
-        }
 
     }
 
-    private fun inserta(name: String, lat: String, lng: String) {
-        Completable.fromAction { val data = CartLocation(name,lat,lng)
+    private fun inserta(name: String, jarak: String) {
+        Completable.fromAction { val data = CartLocation(name,jarak)
             userDatabase.cartLocationDatabaseDAO.insert(data)
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
