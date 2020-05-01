@@ -1,16 +1,24 @@
 package org.malucky.itinerary.Presenters
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,6 +43,8 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
         this.ambilData = data
     }
     private lateinit var userDatabase: CartDatabase
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
@@ -51,34 +61,62 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
         holder.bind(ambilData, position,onClickListener)
         val poto = holder.itemView.iv_tempat
         val add_location = holder.itemView.button3
+        val photoRef = ambilData.get(position)?.photos?.get(0)?.photoReference
+
 
         Glide.with(context)
-            .load(ambilData.get(position)?.icon)
+            .load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+photoRef+"&key=AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
             .transform(MultiTransformation(CenterCrop(), RoundedCornersTransformation(25,0)))
+            .error(R.drawable.noimage)
             .into(poto)
+
 
         userDatabase = CartDatabase.getInstance(context)
 
         //ini fungsi tombolnya
-        add_location.setOnClickListener {
-            val latitude = ambilData.get(position)?.geometry?.location?.lat.toString()
-            val longitude = ambilData.get(position)?.geometry?.location?.lng.toString()
+        add_location.setOnClickListener{
 
-            val havLoga = haversine(-6.9150381,107.6186398, latitude.toDouble() , longitude.toDouble())
+            var status = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-            val hasilHaversine = (havLoga * 1000).toInt()
+            if (status == PackageManager.PERMISSION_GRANTED) {
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location : Location? ->
+                        val lati = location?.latitude
+                        val lng = location?.longitude
 
-            if (hasilHaversine > 1000){
-                val bagi = (hasilHaversine / 1000).toDouble()
-                jarak = bagi.toString() + " km"
-            }else {
-                jarak = hasilHaversine.toString() + " m"
+                        val latitude = ambilData.get(position)?.geometry?.location?.lat.toString()
+                        val longitude = ambilData.get(position)?.geometry?.location?.lng.toString()
+
+                        val havLoga = haversine(lati!!.toDouble(),lng!!.toDouble(), latitude.toDouble() , longitude.toDouble())
+
+                        val hasilHaversine = (havLoga * 1000).toInt()
+
+                        jarak = hasilHaversine.toString() + " m"
+//
+//            if (hasilHaversine > 1000){
+//                val bagi = (hasilHaversine / 1000).toDouble()
+//                jarak = bagi.toString() + " km"
+//            }
+//            else {
+//            }
+
+
+                        inserta(ambilData.get(position)?.name.toString(), jarak)
+                        val intent = Intent(context, CartActivity::class.java)
+                        context.startActivity(intent)
+
+                    }
+            } else {
+                ActivityCompat.requestPermissions(
+                    context as Activity,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    123
+                )
             }
 
 
-            inserta(ambilData.get(position)?.name.toString(), jarak)
-            val intent = Intent(context, CartActivity::class.java)
-            context.startActivity(intent)
         }
 
 

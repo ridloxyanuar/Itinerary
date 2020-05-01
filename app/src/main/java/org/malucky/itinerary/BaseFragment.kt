@@ -50,4 +50,5 @@ abstract class BaseFragment: Fragment() {
         auth.signOut()
         navigate.signin(activity!!)
     }
+
 }

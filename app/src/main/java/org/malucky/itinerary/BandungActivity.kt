@@ -32,7 +32,7 @@ class BandungActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
     }
 
     private fun initView() {
-        presenter.getData()
+//        presenter.getData()
     }
 
     private fun initPresenter() {

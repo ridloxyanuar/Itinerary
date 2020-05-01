@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import org.malucky.itinerary.*
+import org.malucky.itinerary.kategori.TerdekatActivity
 import javax.inject.Inject
 
 class Navigator @Inject constructor() {

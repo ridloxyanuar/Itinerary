@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -25,6 +26,10 @@ class SignUpActivity : BaseActivity() {
     override fun getView(): Int = R.layout.activity_sign_up
 
     override fun onActivityCreated() {
+        Glide.with(this)
+            .load(R.drawable.logo_treavel)
+            .into(imageView6)
+
         txt_btnMasuk.setOnClickListener {
             navigate.signin(this)
         }

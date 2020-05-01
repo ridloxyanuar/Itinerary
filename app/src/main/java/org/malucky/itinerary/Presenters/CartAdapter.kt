@@ -40,7 +40,7 @@ class CartAdapter(
         tempListData.addAll(items)
         Collections.sort(tempListData, object : Comparator<CartLocation> {
             override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
-                return cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!)
+                return (cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!))
             }
         })
         callback.onItemClick(tempListData)
@@ -49,6 +49,7 @@ class CartAdapter(
     private fun cleaningJarak(jarak: String): Int {
         return jarak.replace(" m", "").toInt()
     }
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
@@ -87,7 +88,7 @@ class CartAdapter(
                 override fun onComplete() {
                     toast("deleted successfully")
                     val i = items.get(position)
-                    notifyDataSetChanged()
+                    notifyItemRemoved(position)
                 }
 
                 override fun onError(e: Throwable) {

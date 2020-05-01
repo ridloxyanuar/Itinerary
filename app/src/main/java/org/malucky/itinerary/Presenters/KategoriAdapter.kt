@@ -9,8 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import org.malucky.itinerary.kategori.KulinerActivity
 import org.malucky.itinerary.R
-import org.malucky.itinerary.TerdekatActivity
+import org.malucky.itinerary.kategori.TerdekatActivity
 import org.malucky.itinerary.data.Kategori
 import org.malucky.itinerary.reusable.Navigator
 
@@ -42,8 +43,19 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
 
         holder.itemView.setOnClickListener {
             if(kategori.ket.equals("Terdekat")){
-                val intent = Intent(context, TerdekatActivity::class.java)
-                context.startActivity(intent)
+                val nearbyIntent = Intent(context, TerdekatActivity::class.java)
+                context.startActivity(nearbyIntent)
+            }else if (kategori.ket.equals("Kuliner")){
+                val kulinerIntent = Intent(context, KulinerActivity::class.java)
+                context.startActivity(kulinerIntent)
+            }else if (kategori.ket.equals("Buka & Tutup")){
+                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+            }else if (kategori.ket.equals("Budaya")){
+                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+            }else if (kategori.ket.equals("Pengalaman")){
+                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+            }else if (kategori.ket.equals("Oleh-Oleh")){
+                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
             }
         }
 

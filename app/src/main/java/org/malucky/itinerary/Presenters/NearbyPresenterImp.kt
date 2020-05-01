@@ -1,50 +1,62 @@
 package org.malucky.itinerary.Presenters
 
 import android.util.Log
+import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.malucky.itinerary.Presenters.NearbyAdapter
+import org.malucky.itinerary.MainActivity
+import org.malucky.itinerary.Views.LastLocation
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.common.constant.Urls
 import org.malucky.itinerary.data.ResponseServer
-import org.malucky.itinerary.data.ResultsItem
 
 
 class NearbyPresenterImp : NearbyPresenter{
 
+
     var nearbyViews : NearbyViews? = null
 
 
-
-    override fun getData() {
-        Urls.service
-                .getPlace()
+    override fun getData(lat:String,lng:String) {
+            Urls.service
+                .getPlace(lat+","+lng,"distance", "tourist_attraction", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
-                   t: ResponseServer? ->
+                        t: ResponseServer? ->
 
                     var result = t?.results
-//                    var adapter = NearbyAdapter(result!!,this)
                     nearbyViews?.Success(result!!)
-//                    recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-//                    recyclerView.adapter = adapter
                     Log.d("data", t?.results.toString())
                 }, {
-                    e -> e.localizedMessage
+                        e -> e.localizedMessage
                 })
+
+
+    }
+
+
+
+
+    override fun getDataKuliner(lat:String,lng:String) {
+        Urls.service
+            .getKuliner(lat+","+lng,"distance", "restaurant", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                    t: ResponseServer? ->
+
+                var result = t?.results
+                nearbyViews?.Success(result!!)
+                Log.d("data", t?.results.toString())
+            }, {
+                    e -> e.localizedMessage
+            })
     }
 
     constructor(nearbyViews: NearbyViews?) {
         this.nearbyViews = nearbyViews
     }
-
-
-//    override fun addList(result: List<ResultsItem?>) {
-//        results.add(result)
-//
-//        nearbyViews?.Success(results)
-//    }
 
 
 }

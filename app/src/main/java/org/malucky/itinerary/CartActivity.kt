@@ -14,16 +14,9 @@ import org.malucky.itinerary.Views.CartCallback
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
 import org.malucky.itinerary.db.CartLocationDAO
+import org.malucky.itinerary.itinerary.ItineraryFragment
 import org.malucky.itinerary.util.bottomSheetConfirmationDialog
 import kotlin.collections.ArrayList
-
-
-// cobain dlo run
-//oke bentar bang
-//bisa bang, berati data nya tinggal send aja?
-/// YOIIII
-//// udah ya gw out
-//oke thanks bang
 
 class CartActivity : BaseActivity() {
 
@@ -46,7 +39,7 @@ class CartActivity : BaseActivity() {
         readData()
 
         txt_tambah_cart.setOnClickListener {
-            navigate.mainActivity(this)
+            finish()
         }
 
         imageButton.setOnClickListener {
@@ -57,15 +50,8 @@ class CartActivity : BaseActivity() {
     private fun setupNavigatePenjalanan(listData: List<CartLocation>) {
         btn_atur_perjalanan.setOnClickListener {
             val intent = Intent(this@CartActivity, AturActivity::class.java)
-
-
-
             val stringListCartLocation = Gson().toJson(listData)
             intent.putExtra("EXTRA_NAME", stringListCartLocation)
-
-            // ini terlalu banyak masuk
-            // gw bantuin keluarin 1 1 ya
-            //oke bang
 
             startActivity(intent)
         }
@@ -80,7 +66,6 @@ class CartActivity : BaseActivity() {
         rv_cart.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainAd
-            adapter!!.notifyDataSetChanged()
         }
 
         rv_cart.setNestedScrollingEnabled(false)

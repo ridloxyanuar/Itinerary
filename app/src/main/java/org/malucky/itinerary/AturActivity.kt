@@ -18,12 +18,8 @@ class AturActivity : AppCompatActivity() {
         val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type
         val listDataChartLocation = Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
 
-        // bikinin for kotlin dong lupa kwkwkw
         for (i in listDataChartLocation) {
-
             textView5.append(i.namaLokasi + " \n" + i.jarak +" \n\n")
-//            textView10.append(i.jarak + " ")
-
 
         }
 

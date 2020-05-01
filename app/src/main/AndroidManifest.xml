@@ -7,16 +7,18 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_itraveler"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_itraveler"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".AturActivity"></activity>
+        <activity android:name=".kategori.KulinerActivity"></activity>
+        <activity android:name=".AturActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,8 +36,10 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".DetailLocationActivity" />
         <activity android:name=".CartActivity" />
-        <activity android:name=".TerdekatActivity" />
+        <activity android:name=".kategori.TerdekatActivity" />
         <activity android:name=".BandungActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".itinerary.ItineraryFragment" />
         <activity
             android:name=".SignUpActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
@@ -43,7 +47,7 @@
             android:name=".MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".SplashScreenActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

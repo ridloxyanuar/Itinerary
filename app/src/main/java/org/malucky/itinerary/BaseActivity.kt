@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
+import org.malucky.itinerary.data.ResultsItem
 import org.malucky.itinerary.reusable.Navigator
 
 abstract class BaseActivity: AppCompatActivity() {
@@ -37,6 +38,8 @@ abstract class BaseActivity: AppCompatActivity() {
         auth.signOut()
         navigate.signin(this)
     }
+
+
 
 
 }
