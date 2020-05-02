@@ -3,24 +3,29 @@ package org.malucky.itinerary.dashboard
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
+import android.location.*
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.malucky.itinerary.BaseFragment
 import org.malucky.itinerary.Presenters.KategoriAdapter
 import org.malucky.itinerary.R
 import org.malucky.itinerary.data.Kategori
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : BaseFragment() {
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
     override fun getViewId(): Int = R.layout.fragment_home
@@ -36,6 +41,50 @@ class HomeFragment : BaseFragment() {
 
 
     override fun onFragmentCreated() {
+
+        //address
+//        List<Address> list = geoCoder.getFromLocation(location
+//            .getLatitude(), location.getLongitude(), 1);
+//        if (list != null & list.size() > 0) {
+//            Address address = list.get(0);
+//            result = address.getLocality();
+//            return result;
+        var status = ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        if (status == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    val lati = location?.latitude
+                    val lng = location?.longitude
+
+                    val geocoder = Geocoder(activity, Locale.getDefault())
+                    val listAddress : List<Address> = geocoder.getFromLocation(lati!!, lng!!, 1)
+
+                    if (listAddress.size > 0){
+                        val address : Address = listAddress.get(0)
+                        val hasil = address.adminArea
+
+                        tv_phonenumber.text = hasil
+                    }else{
+                        tv_phonenumber.text = "tidak ditemukan"
+                    }
+
+                }.addOnFailureListener {
+                    Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                123
+            )
+        }
+
+
+
+
         hideKeyboard()
 //        recyclerView = view?.findViewById(R.id.rv_kategori)
         gridLayoutManager = GridLayoutManager(context, 3, LinearLayoutManager.VERTICAL, false)

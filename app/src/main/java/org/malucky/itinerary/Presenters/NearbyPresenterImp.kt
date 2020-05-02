@@ -35,12 +35,41 @@ class NearbyPresenterImp : NearbyPresenter{
 
     }
 
-
-
-
     override fun getDataKuliner(lat:String,lng:String) {
         Urls.service
             .getKuliner(lat+","+lng,"distance", "restaurant", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                    t: ResponseServer? ->
+
+                var result = t?.results
+                nearbyViews?.Success(result!!)
+                Log.d("data", t?.results.toString())
+            }, {
+                    e -> e.localizedMessage
+            })
+    }
+
+    override fun getDataBudaya(lat:String,lng:String) {
+        Urls.service
+            .getBudaya(lat+","+lng,"distance", "art_gallery", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                    t: ResponseServer? ->
+
+                var result = t?.results
+                nearbyViews?.Success(result!!)
+                Log.d("data", t?.results.toString())
+            }, {
+                    e -> e.localizedMessage
+            })
+    }
+
+    override fun getDataJajan(lat:String,lng:String) {
+        Urls.service
+            .getJajan(lat+","+lng,"distance", "bakery", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({

@@ -13,6 +13,8 @@ import org.malucky.itinerary.kategori.KulinerActivity
 import org.malucky.itinerary.R
 import org.malucky.itinerary.kategori.TerdekatActivity
 import org.malucky.itinerary.data.Kategori
+import org.malucky.itinerary.kategori.BudayaActivity
+import org.malucky.itinerary.kategori.JajanActivity
 import org.malucky.itinerary.reusable.Navigator
 
 class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) :
@@ -51,11 +53,13 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
             }else if (kategori.ket.equals("Buka & Tutup")){
                 Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
             }else if (kategori.ket.equals("Budaya")){
-                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+                val budayaIntent = Intent(context, BudayaActivity::class.java)
+                context.startActivity(budayaIntent)
             }else if (kategori.ket.equals("Pengalaman")){
                 Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
             }else if (kategori.ket.equals("Oleh-Oleh")){
-                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+                val jajanIntent = Intent(context, JajanActivity::class.java)
+                context.startActivity(jajanIntent)
             }
         }
 

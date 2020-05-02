@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_itraveler"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".kategori.KulinerActivity"></activity>
+        <activity android:name=".kategori.JajanActivity"></activity>
+        <activity android:name=".kategori.BudayaActivity" />
+        <activity android:name=".kategori.KulinerActivity" />
         <activity android:name=".AturActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

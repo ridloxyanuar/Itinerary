@@ -103,7 +103,7 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 //            }
 
 
-                        inserta(ambilData.get(position)?.name.toString(), jarak)
+                        inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(), ambilData.get(position)?.name.toString(),ambilData.get(position)?.geometry?.location?.lat.toString(),ambilData.get(position)?.geometry?.location?.lng.toString(), jarak)
                         val intent = Intent(context, CartActivity::class.java)
                         context.startActivity(intent)
 
@@ -122,8 +122,8 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 
     }
 
-    private fun inserta(name: String, jarak: String) {
-        Completable.fromAction { val data = CartLocation(name,jarak)
+    private fun inserta(gambar: String, name: String, latitude: String, longitude: String, jarak: String) {
+        Completable.fromAction { val data = CartLocation(gambar,name, latitude, longitude,jarak)
             userDatabase.cartLocationDatabaseDAO.insert(data)
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
@@ -132,6 +132,7 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 
                 override fun onComplete() {
                     toast("Data store successfully")
+                    notifyDataSetChanged()
                 }
 
                 override fun onError(e: Throwable) {

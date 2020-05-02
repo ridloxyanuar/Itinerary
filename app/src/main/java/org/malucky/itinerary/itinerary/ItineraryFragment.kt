@@ -29,10 +29,6 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
 
     override fun getViewId(): Int = R.layout.fragment_itinerary
 
-//    private val vm by lazy {
-//        ViewModelProviders.of(this, injector.dashboardVM()).get(DashboardViewModel::class.java)
-//    }
-
     companion object {
         fun newInstance(): ItineraryFragment =
             ItineraryFragment()
@@ -43,8 +39,6 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
         initPresenter()
         initView()
 
-
-//        rv_itinerary.
     }
 
     private fun initPresenter() {
@@ -53,7 +47,6 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
 
     private fun initView() {
         var status = ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         if (status == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
@@ -87,7 +80,7 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
 
     override fun onItemClick(item: List<ResultsItem?>, position: Int) {
         val intent = Intent(activity!!, DetailLocationActivity::class.java)
-        intent.putExtra("IMAGE", item.get(position)?.icon)
+        intent.putExtra("IMAGE", item.get(position)?.photos?.get(0)?.photoReference)
         intent.putExtra("LOCATION_NAME", item.get(position)?.name)
         intent.putExtra("LOCATION_VICINITY", item.get(position)?.vicinity)
         intent.putExtra("LOCATION_RATING", item.get(position)?.rating)

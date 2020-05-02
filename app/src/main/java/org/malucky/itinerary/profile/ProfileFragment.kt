@@ -32,6 +32,9 @@ class ProfileFragment : BaseFragment() {
             createDialogSignout()
         }
 
+        textView19.text = auth.currentUser?.email
+
+
         setupFrogoRecyclerView()
     }
 

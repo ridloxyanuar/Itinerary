@@ -6,11 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import kotlinx.android.synthetic.main.activity_detail_location.*
 import kotlinx.android.synthetic.main.item_list_cart.view.*
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.CartCallback
@@ -72,7 +77,6 @@ class CartAdapter(
         hapus_lokasi.setOnClickListener {
             deleted(position)
             notifyItemRemoved(position)
-            this.notifyDataSetChanged()
         }
 
     }
@@ -104,6 +108,11 @@ class CartAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindUI(result: CartLocation) = with(itemView) {
 
+            Glide.with(this)
+                .load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+result.gambarLokasi+"&key=AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+                .transform(MultiTransformation(CenterCrop(), RoundedCornersTransformation(10,   0)))
+                .error(R.drawable.noimage)
+                .into(iv_cart)
             tv_cart_name.text = result.namaLokasi
             txt_location.text = result.jarak
 

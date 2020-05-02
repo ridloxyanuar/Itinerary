@@ -1,14 +1,24 @@
 package org.malucky.itinerary
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_terdekat.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.malucky.itinerary.Presenters.CartAdapter
 import org.malucky.itinerary.Views.CartCallback
 import org.malucky.itinerary.db.CartDatabase
@@ -16,6 +26,7 @@ import org.malucky.itinerary.db.CartLocation
 import org.malucky.itinerary.db.CartLocationDAO
 import org.malucky.itinerary.itinerary.ItineraryFragment
 import org.malucky.itinerary.util.bottomSheetConfirmationDialog
+import java.util.*
 import kotlin.collections.ArrayList
 
 class CartActivity : BaseActivity() {
@@ -23,10 +34,43 @@ class CartActivity : BaseActivity() {
     private var mainAd: CartAdapter? = null
     private var userDatabase: CartDatabase? = null
     private lateinit var cartLocation: ArrayList<CartLocation>
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun getView() = R.layout.activity_cart
 
     override fun onActivityCreated() {
+        var status = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        if (status == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location : Location? ->
+                    val lati = location?.latitude
+                    val lng = location?.longitude
+
+                    val geocoder = Geocoder(this, Locale.getDefault())
+                    val listAddress : List<Address> = geocoder.getFromLocation(lati!!, lng!!, 1)
+
+                    if (listAddress.size > 0){
+                        val address : Address = listAddress.get(0)
+                        val hasil = address.getAddressLine(0)
+
+                        textView8.text = hasil
+                    }else{
+                        textView8.text = "Lokasi Tidak ditemukan"
+                    }
+
+                }
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                123
+            )
+        }
+
+
         toolbar_cart.setTitle("Atur Perjalanan")
         setSupportActionBar(toolbar_terdekat)
 

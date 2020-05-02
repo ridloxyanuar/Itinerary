@@ -7,35 +7,27 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.android.synthetic.main.activity_kuliner.*
-import kotlinx.android.synthetic.main.activity_terdekat.*
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.activity_budaya.*
 import org.malucky.itinerary.BaseActivity
 import org.malucky.itinerary.DetailLocationActivity
 import org.malucky.itinerary.Presenters.NearbyAdapter
 import org.malucky.itinerary.Presenters.NearbyPresenterImp
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.NearbyViews
-import org.malucky.itinerary.data.Note
 import org.malucky.itinerary.data.ResultsItem
 
-class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemClickListner {
+class BudayaActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemClickListner {
 
     companion object {
         @JvmStatic
         fun getCallingIntent(activity: Activity): Intent {
-            return Intent(activity, KulinerActivity::class.java)
+            return Intent(activity, BudayaActivity::class.java)
         }
     }
 
@@ -43,15 +35,14 @@ class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
-    override fun getView(): Int =
-        R.layout.activity_kuliner
+    override fun getView(): Int = R.layout.activity_budaya
 
     override fun onActivityCreated() {
-        toolbar_kuliner.setTitle("Kuliner Sekitar Kamu")
-        setSupportActionBar(toolbar_terdekat)
+        toolbar_budaya.setTitle("Kesenian Sekitar Kamu")
+        setSupportActionBar(toolbar_budaya)
 
-        toolbar_kuliner.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        toolbar_kuliner.setNavigationOnClickListener {
+        toolbar_budaya.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        toolbar_budaya.setNavigationOnClickListener {
             finish()
         }
         initPresenter()
@@ -69,17 +60,16 @@ class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
                     val lati = location?.latitude
                     val lng = location?.longitude
 
-                    presenter.getDataKuliner(lati.toString(),lng.toString())
+                    presenter.getDataBudaya(lati.toString(),lng.toString())
 
                 }
         } else {
             ActivityCompat.requestPermissions(
-                this@KulinerActivity,
+                this@BudayaActivity,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 123
             )
         }
-
     }
 
     private fun initPresenter() {
@@ -88,8 +78,8 @@ class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
 
     override fun Success(datas: List<ResultsItem?>) {
         var adapter = NearbyAdapter(datas,this)
-        rv_restaurant.layoutManager = LinearLayoutManager(applicationContext)
-        rv_restaurant.adapter = adapter
+        rv_budaya.layoutManager = LinearLayoutManager(applicationContext)
+        rv_budaya.adapter = adapter
     }
 
     override fun Error(pesan: String) {
@@ -106,9 +96,6 @@ class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
         intent.putExtra("LOCATION_LNG", item.get(position)?.geometry?.location?.lng)
         startActivity(intent)
     }
-
-
-
 
 
 }
