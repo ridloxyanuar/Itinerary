@@ -42,45 +42,38 @@ class HomeFragment : BaseFragment() {
 
     override fun onFragmentCreated() {
 
-        //address
-//        List<Address> list = geoCoder.getFromLocation(location
-//            .getLatitude(), location.getLongitude(), 1);
-//        if (list != null & list.size() > 0) {
-//            Address address = list.get(0);
-//            result = address.getLocality();
-//            return result;
-        var status = ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-        if (status == PackageManager.PERMISSION_GRANTED) {
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location : Location? ->
-                    val lati = location?.latitude
-                    val lng = location?.longitude
-
-                    val geocoder = Geocoder(activity, Locale.getDefault())
-                    val listAddress : List<Address> = geocoder.getFromLocation(lati!!, lng!!, 1)
-
-                    if (listAddress.size > 0){
-                        val address : Address = listAddress.get(0)
-                        val hasil = address.adminArea
-
-                        tv_phonenumber.text = hasil
-                    }else{
-                        tv_phonenumber.text = "tidak ditemukan"
-                    }
-
-                }.addOnFailureListener {
-                    Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
-                }
-        } else {
-            ActivityCompat.requestPermissions(
-                activity!!,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                123
-            )
-        }
+//        var status = ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION)
+//
+//        if (status == PackageManager.PERMISSION_GRANTED) {
+//            fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+//            fusedLocationClient.lastLocation
+//                .addOnSuccessListener { location : Location? ->
+//                    val lati = location?.latitude
+//                    val lng = location?.longitude
+//
+//                    val geocoder = Geocoder(activity, Locale.getDefault())
+//                    val listAddress : List<Address> = geocoder.getFromLocation(lati!!, lng!!, 1)
+//
+//                    if (listAddress.size > 0){
+//                        val address : Address = listAddress.get(0)
+//                        val hasil = address.adminArea
+//
+//                        tv_phonenumber.text = hasil
+//                    }else{
+//                        Toast.makeText(activity, "notfound", Toast.LENGTH_SHORT).show()
+//                        tv_phonenumber.text = "tidak ditemukan"
+//                    }
+//
+//                }.addOnFailureListener {
+//                    Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
+//                }
+//        } else {
+//            ActivityCompat.requestPermissions(
+//                activity!!,
+//                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+//                123
+//            )
+//        }
 
 
 

@@ -9,12 +9,17 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import org.malucky.itinerary.data.ResultsItem
 import org.malucky.itinerary.reusable.Navigator
 
 abstract class BaseActivity: AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
+    lateinit var firebaseFirestore: FirebaseFirestore
+    lateinit var storageReference: StorageReference
 
     var navigate: Navigator = Navigator()
 
