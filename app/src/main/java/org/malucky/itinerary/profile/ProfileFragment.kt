@@ -1,26 +1,31 @@
 package org.malucky.itinerary.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
-import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.malucky.itinerary.AddStoryActivity
 import org.malucky.itinerary.BaseFragment
+import org.malucky.itinerary.EditProfilActivity
 import org.malucky.itinerary.R
 import org.malucky.itinerary.data.Note
-import java.util.*
 
 
 class ProfileFragment : BaseFragment() {
+
+    private var mainImageUri: Uri? = null
+
 
     override fun getViewId(): Int = R.layout.fragment_profile
 
@@ -33,21 +38,55 @@ class ProfileFragment : BaseFragment() {
     override fun onFragmentCreated() {
 
         auth = FirebaseAuth.getInstance()
+        val user_id = auth.currentUser!!.uid
+        val firebaseFirestore = FirebaseFirestore.getInstance()
 
         txt_signOut.setOnClickListener {
             createDialogSignout()
         }
 
         tv_ubah_profil.setOnClickListener {
-
+            val intent = Intent(activity, EditProfilActivity::class.java)
+            startActivity(intent)
         }
 
-        textView3.setOnClickListener {
+        tv_add_story.setOnClickListener {
             val intent = Intent(activity, AddStoryActivity::class.java)
             startActivity(intent)
         }
 
-        textView19.text = auth.currentUser?.email
+        iv_avatar_profil.setVisibility(View.INVISIBLE)
+        tv_nama_profil.setVisibility(View.INVISIBLE)
+        tv_email_profile.setVisibility(View.INVISIBLE)
+
+
+        firebaseFirestore.collection("Users").document(user_id).get()
+            .addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
+                if (isAdded) {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    val name = documentSnapshot.getString("name")
+                    val image = documentSnapshot.getString("image")
+                    assert(user != null)
+
+                    if (name == null && image == null){
+                        mainImageUri == null
+                        tv_nama_profil.setText("nama lengkap")
+                        tv_email_profile.text = auth.currentUser?.email
+                    }else{
+                        mainImageUri = Uri.parse(image)
+                        tv_nama_profil.setText(name)
+                        tv_email_profile.text = auth.currentUser?.email
+                    }
+                    val placeholderRequest = RequestOptions()
+                    placeholderRequest.placeholder(R.drawable.user_male)
+                    Glide.with(context!!).setDefaultRequestOptions(placeholderRequest)
+                        .load(image).into(iv_avatar_profil)
+
+                    iv_avatar_profil.setVisibility(View.VISIBLE)
+                    tv_nama_profil.setVisibility(View.VISIBLE)
+                    tv_email_profile.setVisibility(View.VISIBLE)
+                }
+            })
 
 
 

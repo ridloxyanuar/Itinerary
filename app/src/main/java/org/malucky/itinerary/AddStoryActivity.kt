@@ -33,21 +33,11 @@ class AddStoryActivity : BaseActivity() {
         firebaseFirestore = FirebaseFirestore.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
-
-        iv_add_note.setOnClickListener {
-            CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMinCropResultSize(512, 512)
-                .setAspectRatio(1, 1)
-                .start(this@AddStoryActivity)
-
-        }
-
-
         btn_add_note.setOnClickListener {
+            val judul = et_judul_add.text.toString()
             val cerita = et_add_note.text.toString()
 
-            val notes = Note("text", cerita, false,Timestamp(Date()), userID)
+            val notes = Note(judul, cerita, false,Timestamp(Date()), userID)
 
             firebaseFirestore.collection("Notes")
                 .add(notes)
