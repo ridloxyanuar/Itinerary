@@ -1,13 +1,12 @@
 package org.malucky.itinerary
 
 import io.reactivex.Observable
-import org.malucky.itinerary.common.constant.UrlPhotos
+import org.malucky.itinerary.common.constant.UrlDetails
 import org.malucky.itinerary.common.constant.Urls
+import org.malucky.itinerary.data.ResponseDetailServer
 import org.malucky.itinerary.data.ResponseServer
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface ApiService {
 
@@ -50,12 +49,12 @@ interface ApiService {
     ): Observable<ResponseServer>
 
 
-    @GET(UrlPhotos.ParamsPhotos.BASE_URL_PLACE_PHOTO)
-    fun getPhoto(
-        @Query(UrlPhotos.ParamsPhotos.QUERY_MAXWIDTH) maxwidth: String,
-        @Query(UrlPhotos.ParamsPhotos.QUERY_PHOTOREF) photoref: String,
-        @Query(UrlPhotos.ParamsPhotos.QUERY_KEY_PHOTO) keyPhoto: String
-    ): Observable<ResponseServer>
+    @GET(UrlDetails.ParamsDetails.BASE_URL_PLACE_DETAILS)
+    fun getPlaceDetails(
+        @Query(UrlDetails.ParamsDetails.QUERY_PLACE_ID) place_id: String,
+        @Query(UrlDetails.ParamsDetails.QUERY_FIELDS) fields: String,
+        @Query(UrlDetails.ParamsDetails.QUERY_KEY_DETAILS) keyDetails: String
+    ): Observable<ResponseDetailServer>
 
 
 

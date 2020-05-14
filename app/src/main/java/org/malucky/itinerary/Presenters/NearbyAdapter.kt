@@ -61,6 +61,7 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
         holder.bind(ambilData, position,onClickListener)
         val poto = holder.itemView.iv_tempat
         val add_location = holder.itemView.button3
+        val placeId  = ambilData.get(position)?.placeId
         val photoRef = ambilData.get(position)?.photos?.get(0)?.photoReference
 
 

@@ -81,6 +81,7 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
     override fun onItemClick(item: List<ResultsItem?>, position: Int) {
         val intent = Intent(activity!!, DetailLocationActivity::class.java)
         intent.putExtra("IMAGE", item.get(position)?.photos?.get(0)?.photoReference)
+        intent.putExtra("PLACE_ID", item.get(position)?.placeId)
         intent.putExtra("LOCATION_NAME", item.get(position)?.name)
         intent.putExtra("LOCATION_VICINITY", item.get(position)?.vicinity)
         intent.putExtra("LOCATION_RATING", item.get(position)?.rating)

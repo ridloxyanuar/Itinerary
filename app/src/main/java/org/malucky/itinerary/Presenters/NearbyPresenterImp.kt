@@ -5,9 +5,12 @@ import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.malucky.itinerary.MainActivity
+import org.malucky.itinerary.Views.DetailsViews
 import org.malucky.itinerary.Views.LastLocation
 import org.malucky.itinerary.Views.NearbyViews
+import org.malucky.itinerary.common.constant.UrlDetails
 import org.malucky.itinerary.common.constant.Urls
+import org.malucky.itinerary.data.ResponseDetailServer
 import org.malucky.itinerary.data.ResponseServer
 
 
@@ -15,6 +18,7 @@ class NearbyPresenterImp : NearbyPresenter{
 
 
     var nearbyViews : NearbyViews? = null
+    var detailsViews : DetailsViews? = null
 
 
     override fun getData(lat:String,lng:String) {
@@ -83,8 +87,28 @@ class NearbyPresenterImp : NearbyPresenter{
             })
     }
 
+    override fun getPlaceDetails(placeId: String) {
+        UrlDetails.serviceDetails
+            .getPlaceDetails(placeId, "opening_hours", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                t: ResponseDetailServer? ->
+
+                var result = t?.results
+                detailsViews?.Success(result!!)
+                Log.d("details", t?.results.toString())
+            },{
+                e -> e.localizedMessage
+            })
+    }
+
     constructor(nearbyViews: NearbyViews?) {
         this.nearbyViews = nearbyViews
+    }
+
+    constructor(detailsViews: DetailsViews) {
+        this.detailsViews = detailsViews
     }
 
 
