@@ -51,8 +51,24 @@ class CartAdapter(
         callback.onItemClick(tempListData)
     }
 
+//    private fun sortData2() {
+//
+//        val tempListDataRate = mutableListOf<CartLocation>()
+//
+//        tempListDataRate.addAll(items)
+//        Collections.sort(tempListDataRate, object : Comparator<CartLocation> {
+//            override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
+//                return (cleaningRate(o2?.rate!!).toInt() - cleaningRate(o1?.rate!!).toInt())
+//            }
+//        })
+//        callback.onItemClick(tempListDataRate)
+//    }
+
     private fun cleaningJarak(jarak: String): Int {
         return jarak.replace(" m", "").toInt()
+    }
+    private fun cleaningRate(rate: String): Double {
+        return rate.toDouble()
     }
 
 
@@ -83,7 +99,7 @@ class CartAdapter(
 
     private fun deleted(position: Int) {
         Completable.fromAction {
-            userDatabase!!.cartLocationDatabaseDAO.deleteID(items.get(position))
+            userDatabase.cartLocationDatabaseDAO.deleteID(items.get(position))
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : CompletableObserver {

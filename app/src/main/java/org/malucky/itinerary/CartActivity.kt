@@ -18,13 +18,10 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_cart.*
 import kotlinx.android.synthetic.main.activity_terdekat.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.malucky.itinerary.Presenters.CartAdapter
 import org.malucky.itinerary.Views.CartCallback
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
-import org.malucky.itinerary.db.CartLocationDAO
-import org.malucky.itinerary.itinerary.ItineraryFragment
 import org.malucky.itinerary.util.bottomSheetConfirmationDialog
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,7 +37,6 @@ class CartActivity : BaseActivity() {
 
     override fun onActivityCreated() {
         var status = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         if (status == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -96,7 +92,6 @@ class CartActivity : BaseActivity() {
             val intent = Intent(this@CartActivity, AturActivity::class.java)
             val stringListCartLocation = Gson().toJson(listData)
             intent.putExtra("EXTRA_NAME", stringListCartLocation)
-
             startActivity(intent)
         }
     }
@@ -107,6 +102,8 @@ class CartActivity : BaseActivity() {
                 setupNavigatePenjalanan(listData)
             }
         })
+
+
         rv_cart.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainAd

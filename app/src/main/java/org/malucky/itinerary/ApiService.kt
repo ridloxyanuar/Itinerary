@@ -56,6 +56,4 @@ interface ApiService {
         @Query(UrlDetails.ParamsDetails.QUERY_KEY_DETAILS) keyDetails: String
     ): Observable<ResponseDetailServer>
 
-
-
 }

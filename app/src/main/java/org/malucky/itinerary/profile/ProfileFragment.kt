@@ -114,7 +114,7 @@ class ProfileFragment : BaseFragment() {
             //adapter
             val adapterCallback = object : FrogoAdapterCallback<Note> {
                 override fun setupInitComponent(view: View, data: Note) {
-                    view.findViewById<TextView>(R.id.tv_example_item).text = data.name
+                    view.findViewById<TextView>(R.id.tv_example_item).text = data.gambar
                 }
 
                 override fun onItemClicked(data: Note) {
@@ -128,7 +128,7 @@ class ProfileFragment : BaseFragment() {
 
             rv_diaryTravel.injector<Note>()
                 .addData(notesList)
-                .addCustomView(R.layout.frogo_rv_list_type_2)
+                .addCustomView(R.layout.frogo_rv_list_type_1)
                 .addEmptyView(null)
                 .addCallback(adapterCallback)
                 .createLayoutLinearVertical(false)

@@ -95,16 +95,13 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
                         val hasilHaversine = (havLoga * 1000).toInt()
 
                         jarak = hasilHaversine.toString() + " m"
-//
-//            if (hasilHaversine > 1000){
-//                val bagi = (hasilHaversine / 1000).toDouble()
-//                jarak = bagi.toString() + " km"
-//            }
-//            else {
-//            }
 
-
-                        inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(), ambilData.get(position)?.name.toString(),ambilData.get(position)?.geometry?.location?.lat.toString(),ambilData.get(position)?.geometry?.location?.lng.toString(), jarak)
+                        inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
+                            ambilData.get(position)?.name.toString(),
+                            ambilData.get(position)?.geometry?.location?.lat.toString(),
+                            ambilData.get(position)?.geometry?.location?.lng.toString(),
+                            ambilData.get(position)?.rating.toString(),
+                            jarak)
                         val intent = Intent(context, CartActivity::class.java)
                         context.startActivity(intent)
 
@@ -123,8 +120,8 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 
     }
 
-    private fun inserta(gambar: String, name: String, latitude: String, longitude: String, jarak: String) {
-        Completable.fromAction { val data = CartLocation(gambar,name, latitude, longitude,jarak)
+    private fun inserta(gambar: String, name: String, latitude: String, longitude: String, rate: String, jarak: String) {
+        Completable.fromAction { val data = CartLocation(gambar,name, latitude,longitude,rate, jarak)
             userDatabase.cartLocationDatabaseDAO.insert(data)
         }.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

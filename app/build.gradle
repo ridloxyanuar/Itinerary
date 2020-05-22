@@ -54,6 +54,7 @@ dependencies {
     //Material Dialog
     implementation 'com.afollestad.material-dialogs:core:2.0.0'
     implementation 'com.afollestad.material-dialogs:input:2.0.0'
+    implementation 'com.afollestad.material-dialogs:datetime:3.3.0'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -80,6 +81,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:21.4.3'
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.1'
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
+
+    //TimelineView
+    implementation 'com.github.vipulasri:timelineview:1.1.4'
 
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:6.0.2'
