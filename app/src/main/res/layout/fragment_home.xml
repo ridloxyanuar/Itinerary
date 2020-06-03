@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="8dp"
-            android:text="Ridlo Yanuar"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold"

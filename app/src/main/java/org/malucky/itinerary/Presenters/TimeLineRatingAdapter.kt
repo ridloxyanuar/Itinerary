@@ -3,25 +3,19 @@ package org.malucky.itinerary.Presenters
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.work.Data
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.datetime.dateTimePicker
 import com.github.vipulasri.timelineview.TimelineView
 import kotlinx.android.synthetic.main.atur_list_item.view.*
+import org.malucky.itinerary.AturActivity
 import org.malucky.itinerary.R
 import org.malucky.itinerary.db.CartLocation
-import org.malucky.itinerary.util.NotifyWork
-import org.malucky.itinerary.util.formatDateTime
 
 
-class TimeLineAdapter(private val mContext: Context, private val cartLocation: List<CartLocation>, var onClickListener: OnItemClickListner) : RecyclerView.Adapter<TimeLineAdapter.TimeLineViewHolder>() {
+class TimeLineRatingAdapter(private val mContext: Context, private val cartLocation: List<CartLocation>, var onClickListener: AturActivity) : RecyclerView.Adapter<TimeLineRatingAdapter.TimeLineViewHolder>() {
 
     companion object {
         val ITEM_A = 1
@@ -54,7 +48,7 @@ class TimeLineAdapter(private val mContext: Context, private val cartLocation: L
         val timeLineModel = cartLocation[position]
 
         holder.lokasi.text = timeLineModel.namaLokasi
-        holder.jarak.text = timeLineModel.jarak
+        holder.jarak.text = timeLineModel.rate
         val latitude = timeLineModel.latitude
         val longitude = timeLineModel.longitude
 
@@ -106,7 +100,7 @@ class TimeLineAdapter(private val mContext: Context, private val cartLocation: L
 
     override fun getItemCount() = cartLocation.size
 
-    inner class TimeLineViewHolder(itemView: View, viewType: Int, action: OnItemClickListner) : RecyclerView.ViewHolder(itemView) {
+    inner class TimeLineViewHolder(itemView: View, viewType: Int, action: AturActivity) : RecyclerView.ViewHolder(itemView) {
 
         val lokasi = itemView.txt_namaTempatAtur
         val jarak = itemView.txt_jarakAtur
@@ -117,21 +111,6 @@ class TimeLineAdapter(private val mContext: Context, private val cartLocation: L
 
         init {
             timeline.initLine(viewType)
-//            timeline.markerSize = mAttributes.markerSize
-//            timeline.setMarkerColor(mAttributes.markerColor)
-//            timeline.isMarkerInCenter = mAttributes.markerInCenter
-//            timeline.markerPaddingLeft = mAttributes.markerLeftPadding
-//            timeline.markerPaddingTop = mAttributes.markerTopPadding
-//            timeline.markerPaddingRight = mAttributes.markerRightPadding
-//            timeline.markerPaddingBottom = mAttributes.markerBottomPadding
-//            timeline.linePadding = mAttributes.linePadding
-//
-//            timeline.lineWidth = mAttributes.lineWidth
-//            timeline.setStartLineColor(mAttributes.startLineColor, viewType)
-//            timeline.setEndLineColor(mAttributes.endLineColor, viewType)
-//            timeline.lineStyle = mAttributes.lineStyle
-//            timeline.lineStyleDashLength = mAttributes.lineDashWidth
-//            timeline.lineStyleDashGap = mAttributes.lineDashGap
             itemView.setOnClickListener {
                 action.onItemClick(cartLocation, adapterPosition)
             }

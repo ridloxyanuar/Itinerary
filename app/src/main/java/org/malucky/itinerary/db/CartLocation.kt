@@ -11,7 +11,7 @@ import kotlinx.android.parcel.IgnoredOnParcel
 class CartLocation{
 
     @PrimaryKey(autoGenerate = true)
-    var locId: Int = 0
+    var locId: Long = 0
 
     @ColumnInfo(name = "gambar_lokasi")
     var gambarLokasi: String = ""
@@ -32,7 +32,7 @@ class CartLocation{
     var jarak: String = ""
 
 
-    constructor(locId: Int, gambarLokasi: String, namaLokasi: String, latitude: String, longitude: String, rate: String, jarak: String) {
+    constructor(locId: Long, gambarLokasi: String, namaLokasi: String, latitude: String, longitude: String, rate: String, jarak: String) {
         this.locId = locId
         this.gambarLokasi = gambarLokasi
         this.namaLokasi = namaLokasi

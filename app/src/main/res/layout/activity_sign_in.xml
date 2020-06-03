@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_button"
-        android:text="Login"
+        android:text="Masuk"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/et_pass_login"
         app:layout_constraintHorizontal_bias="0.0"
@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Lupa Kata Sandi ?"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/et_pass_login"
         app:layout_constraintTop_toBottomOf="@+id/et_pass_login" />
 

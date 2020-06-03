@@ -126,7 +126,7 @@ class ProfileFragment : BaseFragment() {
                 }
             }
 
-            rv_diaryTravel.injector<Note>()
+            rv_diaryTravel!!.injector<Note>()
                 .addData(notesList)
                 .addCustomView(R.layout.frogo_rv_list_type_1)
                 .addEmptyView(null)

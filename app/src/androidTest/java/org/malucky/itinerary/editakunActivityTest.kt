@@ -8,6 +8,7 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
 import androidx.test.runner.AndroidJUnit4
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -20,15 +21,24 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class SplashScreenActivityTest {
+class editakunActivityTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(SplashScreenActivity::class.java)
 
-    @Test
-    fun splashScreenActivityTest() {
+    @Rule
+    @JvmField
+    var mGrantPermissionRule =
+        GrantPermissionRule.grant(
+            "android.permission.ACCESS_FINE_LOCATION"
+        )
 
+    @Test
+    fun editakunActivityTest() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
         val appCompatEditText = onView(
@@ -79,7 +89,7 @@ class SplashScreenActivityTest {
 
         val appCompatButton = onView(
             allOf(
-                withId(R.id.btn_masuk), withText("Login"),
+                withId(R.id.btn_masuk), withText("Masuk"),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.ScrollView")),
@@ -91,7 +101,14 @@ class SplashScreenActivityTest {
         )
         appCompatButton.perform(scrollTo(), click())
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        Thread.sleep(7000)
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
         val bottomNavigationItemView = onView(
@@ -109,38 +126,27 @@ class SplashScreenActivityTest {
         )
         bottomNavigationItemView.perform(click())
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        Thread.sleep(5000)
+
         val appCompatTextView = onView(
             allOf(
-                withId(R.id.txt_signOut), withText("Keluar"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.main_container),
-                        0
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatTextView.perform(click())
-
-        val dialogActionButton = onView(
-            allOf(
-                withId(R.id.md_button_positive), withText("Yes"),
+                withId(R.id.tv_ubah_profil), withText("Edit Akun"),
                 childAtPosition(
                     allOf(
-                        withId(R.id.md_button_layout),
+                        withId(R.id.constraintLayout3),
                         childAtPosition(
-                            withId(R.id.md_root),
-                            2
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            0
                         )
                     ),
-                    1
-                ),
-                isDisplayed()
+                    3
+                )
             )
         )
-        dialogActionButton.perform(click())
+        appCompatTextView.perform(scrollTo(), click())
     }
 
     private fun childAtPosition(

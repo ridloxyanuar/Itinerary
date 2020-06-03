@@ -15,7 +15,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.activity_detail_location.*
 import kotlinx.android.synthetic.main.item_list_cart.view.*
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.CartCallback
@@ -92,7 +91,6 @@ class CartAdapter(
         val hapus_lokasi = holder.itemView.ib_delete
         hapus_lokasi.setOnClickListener {
             deleted(position)
-            notifyItemRemoved(position)
         }
 
     }
@@ -106,9 +104,8 @@ class CartAdapter(
                 override fun onSubscribe(d: Disposable) {}
 
                 override fun onComplete() {
-                    toast("deleted successfully")
-                    val i = items.get(position)
                     notifyItemRemoved(position)
+                    toast("deleted successfully")
                 }
 
                 override fun onError(e: Throwable) {

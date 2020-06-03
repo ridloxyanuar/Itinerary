@@ -25,4 +25,8 @@ interface CartLocationDAO {
 
     @Delete
     fun deleteID(cart: CartLocation)
+
+    //Delete one item by id
+    @Query("DELETE FROM cartLocation WHERE locId = :itemId")
+    fun deleteByItemId(itemId: Long)
 }
