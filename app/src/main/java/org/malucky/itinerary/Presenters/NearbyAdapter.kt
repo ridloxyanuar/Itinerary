@@ -96,14 +96,31 @@ class NearbyAdapter(data: List<ResultsItem?>,var onClickListener: OnLocationItem
 
                         jarak = hasilHaversine.toString() + " m"
 
-                        inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
-                            ambilData.get(position)?.name.toString(),
-                            ambilData.get(position)?.geometry?.location?.lat.toString(),
-                            ambilData.get(position)?.geometry?.location?.lng.toString(),
-                            ambilData.get(position)?.rating.toString(),
-                            jarak)
-                        val intent = Intent(context, CartActivity::class.java)
-                        context.startActivity(intent)
+                        val rating = ambilData.get(position)?.rating.toString()
+
+                        if (rating.equals("null")){
+                            val rate = "0 Rating"
+                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
+                                ambilData.get(position)?.name.toString(),
+                                ambilData.get(position)?.geometry?.location?.lat.toString(),
+                                ambilData.get(position)?.geometry?.location?.lng.toString(),
+                                rate,
+                                jarak)
+                            val intent = Intent(context, CartActivity::class.java)
+                            context.startActivity(intent)
+                        }else{
+                            val rate = rating + " Rating"
+                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
+                                ambilData.get(position)?.name.toString(),
+                                ambilData.get(position)?.geometry?.location?.lat.toString(),
+                                ambilData.get(position)?.geometry?.location?.lng.toString(),
+                                rate,
+                                jarak)
+                            val intent = Intent(context, CartActivity::class.java)
+                            context.startActivity(intent)
+                        }
+
+
 
                     }
             } else {

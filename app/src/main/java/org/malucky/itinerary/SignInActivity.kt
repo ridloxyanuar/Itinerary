@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import org.d3ifcool.resepedia.ForgetActivity
 
 class SignInActivity : BaseActivity() {
 
@@ -50,7 +49,7 @@ class SignInActivity : BaseActivity() {
             signIn(et_email_login.text.toString(), et_pass_login.text.toString())
         }
         txt_forget_pass.setOnClickListener {
-            startActivity(Intent(this, ForgetActivity::class.java))
+            startActivity(Intent(this@SignInActivity, ForgetActivity::class.java))
         }
 
         hideKeyboard()

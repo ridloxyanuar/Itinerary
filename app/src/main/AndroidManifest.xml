@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_itraveler"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ForgetActivity"></activity>
+        <activity android:name=".ForgetActivity"/>
         <activity android:name=".EditProfilActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

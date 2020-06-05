@@ -26,6 +26,8 @@ class SignUpActivity : BaseActivity() {
     override fun getView(): Int = R.layout.activity_sign_up
 
     override fun onActivityCreated() {
+        auth = FirebaseAuth.getInstance()
+
         Glide.with(this)
             .load(R.drawable.logo_treavel)
             .into(imageView6)
@@ -37,7 +39,6 @@ class SignUpActivity : BaseActivity() {
             createAccount(et_email_daftar.text.toString(), et_pass_daftar.text.toString())
         }
 
-        auth = FirebaseAuth.getInstance()
     }
 
     private fun createAccount(email: String, password: String) {
@@ -46,41 +47,22 @@ class SignUpActivity : BaseActivity() {
             return
         }
 
-//        showProgressBar()
-        // [START create_user_with_email]
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
-//                    val user = auth.currentUser
-//                    updateUI(user)
                     navigate.mainActivity(this)
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
-//                    updateUI(null)
                 }
-
-                // [START_EXCLUDE]
-//                hideProgressBar()
-                // [END_EXCLUDE]
             }
-        // [END create_user_with_email]
     }
 
     private fun validateForm(): Boolean {
         var valid = true
 
-        val fullName = et_fullName.text.toString()
-        if (TextUtils.isEmpty(fullName)) {
-            et_fullName.error = "Required."
-            valid = false
-        } else {
-            et_fullName.error = null
-        }
 
         val email = et_email_daftar.text.toString()
         if (TextUtils.isEmpty(email)) {
