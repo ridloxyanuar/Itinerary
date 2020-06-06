@@ -21,8 +21,6 @@ class MainActivity: BaseActivity(){
 
     }
 
-
-
     override fun getView(): Int = R.layout.activity_main
     lateinit var navController: NavController
     private lateinit var fusedLocationClient: FusedLocationProviderClient

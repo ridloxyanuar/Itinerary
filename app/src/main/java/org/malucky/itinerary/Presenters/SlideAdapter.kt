@@ -1,5 +1,6 @@
 package org.malucky.itinerary.Presenters
 
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import java.util.*
 class SlideAdapter(data: List<ResultsItem?>) : SliderViewAdapter<SlideAdapter.SliderAdapterVH>() {
 
     var ambilData : List<ResultsItem?>
+    lateinit var mContext : Context
     init {
         this.ambilData = data
     }
@@ -33,8 +35,13 @@ class SlideAdapter(data: List<ResultsItem?>) : SliderViewAdapter<SlideAdapter.Sl
     }
 
     override fun getCount(): Int {
-        return 5
+        if (ambilData.isEmpty()){
+            return 0
+        }else{
+            return 5
+        }
 
+        return 5
     }
 
     override fun onBindViewHolder(viewHolder: SliderAdapterVH?, position: Int) {
