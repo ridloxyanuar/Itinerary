@@ -95,7 +95,7 @@ class CartActivity : BaseActivity() {
         }
 
         imageButton.setOnClickListener {
-            bottomSheetConfirmationDialog("Pilih Lokasi")
+            bottomSheetConfirmationDialog("Detail Lokasi")
         }
     }
 

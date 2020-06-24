@@ -24,6 +24,7 @@ object Urls {
     const val URL_BUDAYA =
         "json?location=-6.9150381,107.6186398&rankby=distance&type=art_gallery&key=AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c"
 
+
     val SERVER_DEVELOP = "https://maps.googleapis.com/maps/api/place/nearbysearch/"
 
     val retrofit = Retrofit.Builder()

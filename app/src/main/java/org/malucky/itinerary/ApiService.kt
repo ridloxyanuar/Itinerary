@@ -48,6 +48,14 @@ interface ApiService {
         @Query(Urls.Params.QUERY_KEY) key: String
     ): Observable<ResponseServer>
 
+    @GET(Urls.Params.BASE_URL_PLACE)
+    fun getHotel(
+        @Query(Urls.Params.QUERY_LOCATION) location: String,
+        @Query(Urls.Params.QUERY_RANKBY) rankBy: String,
+        @Query(Urls.Params.QUERY_TYPE) type: String,
+        @Query(Urls.Params.QUERY_KEY) key: String
+    ): Observable<ResponseServer>
+
 
     @GET(UrlDetails.ParamsDetails.BASE_URL_PLACE_DETAILS)
     fun getPlaceDetails(

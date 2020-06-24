@@ -15,7 +15,9 @@ import androidx.work.WorkManager
 import org.malucky.itinerary.Presenters.TimeLineRatingAdapter
 import org.malucky.itinerary.util.NotifyWork
 import org.malucky.itinerary.util.NotifyWork.Companion.NOTIFICATION_WORK
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.Comparator
 
 
 class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
@@ -39,6 +41,8 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
 
         button.setOnClickListener {
             //buat jadwal baru
+            finish()
+
         }
 
         button2.setOnClickListener {
@@ -54,6 +58,7 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
 
         val sortrating = listDataChartLocation.sortedByDescending { it.rate }
 
+
         mLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         rv_atur2.apply {
@@ -68,7 +73,13 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
         val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type
         val listDataChartLocation = Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
 
-        val sortjarak = listDataChartLocation.sortedBy { it.jarak }
+        val sortjarak = listDataChartLocation.sortedWith(object : Comparator<CartLocation>{
+            override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
+                return (cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!))
+            }
+
+        })
+
 
         mLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
@@ -94,5 +105,8 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
         instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK, ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
     }
 
+    private fun cleaningJarak(jarak: String): Int {
+        return jarak.replace(" m", "").toInt()
+    }
 
 }

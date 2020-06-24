@@ -9,12 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import org.malucky.itinerary.kategori.KulinerActivity
 import org.malucky.itinerary.R
-import org.malucky.itinerary.kategori.TerdekatActivity
 import org.malucky.itinerary.data.Kategori
-import org.malucky.itinerary.kategori.BudayaActivity
-import org.malucky.itinerary.kategori.JajanActivity
+import org.malucky.itinerary.kategori.*
 import org.malucky.itinerary.reusable.Navigator
 
 class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) :
@@ -51,7 +48,9 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
                 val kulinerIntent = Intent(context, KulinerActivity::class.java)
                 context.startActivity(kulinerIntent)
             }else if (kategori.ket.equals("Buka & Tutup")){
-                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
+                val hotelIntent = Intent(context, HotelsActivity::class.java)
+                context.startActivity(hotelIntent)
             }else if (kategori.ket.equals("Budaya")){
                 val budayaIntent = Intent(context, BudayaActivity::class.java)
                 context.startActivity(budayaIntent)

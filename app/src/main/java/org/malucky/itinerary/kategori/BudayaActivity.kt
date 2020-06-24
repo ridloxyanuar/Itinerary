@@ -92,7 +92,7 @@ class BudayaActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItem
         intent.putExtra("PLACE_ID", item.get(position)?.placeId)
         intent.putExtra("LOCATION_NAME", item.get(position)?.name)
         intent.putExtra("LOCATION_VICINITY", item.get(position)?.vicinity)
-        intent.putExtra("LOCATION_RATING", item.get(position)?.rating)
+        intent.putExtra("LOCATION_RATING", item.get(position)?.rating.toString())
         intent.putExtra("LOCATION_LAT", item.get(position)?.geometry?.location?.lat)
         intent.putExtra("LOCATION_LNG", item.get(position)?.geometry?.location?.lng)
         startActivity(intent)
