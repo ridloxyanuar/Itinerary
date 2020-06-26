@@ -9,12 +9,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-fun Context.bottomSheetConfirmationDialog(message: String) {
+fun Context.bottomSheetConfirmationDialog(message: String, detail: String) {
     BottomSheetDialog(this).apply {
 
         setContentView(R.layout.bottom_sheet_confirmation_dialog)
 
         tvMessage.text = message
+
+        tv_detail_lokasi.text = detail
 
         show()
     }

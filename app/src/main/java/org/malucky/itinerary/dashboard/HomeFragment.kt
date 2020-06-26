@@ -154,7 +154,7 @@ class HomeFragment : BaseFragment(), NearbyViews {
             presenter.getData(lat.toString(),lng.toString())
 
             val geocoder = Geocoder(activity, Locale.getDefault())
-            val listAddress : List<Address> = geocoder.getFromLocation(lat!!, lng!!, 1)
+            val listAddress : List<Address> = geocoder.getFromLocation(lat, lng, 1)
 
             if (listAddress.size > 0){
                 val address : Address = listAddress.get(0)

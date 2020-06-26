@@ -95,7 +95,7 @@ class CartActivity : BaseActivity() {
         }
 
         imageButton.setOnClickListener {
-            bottomSheetConfirmationDialog("Detail Lokasi")
+            bottomSheetConfirmationDialog("Detail Lokasi", textView8.text.toString())
         }
     }
 
