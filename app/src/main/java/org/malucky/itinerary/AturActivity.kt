@@ -71,7 +71,7 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
                 override fun onSubscribe(d: Disposable) {}
 
                 override fun onComplete() {
-                    val intent = Intent(this@AturActivity, TerdekatActivity::class.java)
+                    val intent = Intent(this@AturActivity, MainActivity::class.java)
                     startActivity(intent)
                 }
 

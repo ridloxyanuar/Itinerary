@@ -39,6 +39,24 @@ class NearbyPresenterImp : NearbyPresenter{
 
     }
 
+    override fun getDataPopuler(lat:String,lng:String) {
+        Urls.service
+            .getPlace(lat+","+lng,"prominence", "tourist_attraction", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                    t: ResponseServer? ->
+
+                var result = t?.results
+                nearbyViews?.Success(result!!)
+                Log.d("data", t?.results.toString())
+            }, {
+                    e -> e.localizedMessage
+            })
+
+
+    }
+
     override fun getDataKuliner(lat:String,lng:String) {
         Urls.service
             .getKuliner(lat+","+lng,"distance", "restaurant", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
@@ -89,7 +107,7 @@ class NearbyPresenterImp : NearbyPresenter{
 
     override fun getDataHotel(lat: String, lng: String) {
         Urls.service
-            .getHotel(lat+","+lng,"distance", "hotels", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .getHotel(lat+","+lng,"distance", "museum", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({

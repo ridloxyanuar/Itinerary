@@ -1,149 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
-            android:layout_width="0dp"
+        android:layout_height="@dimen/header_height"
+        android:id="@+id/rl_top"
+        android:background="@color/colorPrimary">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_curve"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            fontPath="fonts/Muli-Bold.ttf"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_avatar_profil"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="16dp"
-                android:padding="5dp"
-                android:src="@drawable/user_male"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_nama_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal"
-                android:text="Ridlo Yanuar"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/iv_avatar_profil"
-                app:layout_constraintStart_toStartOf="@+id/iv_avatar_profil"
-                app:layout_constraintTop_toBottomOf="@+id/iv_avatar_profil" />
-
-            <TextView
-                android:id="@+id/tv_email_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center_horizontal"
-                android:text="Ridloyanuar@gmail.com"
-                android:textColor="#ffffff"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="@+id/tv_nama_profil"
-                app:layout_constraintStart_toStartOf="@+id/tv_nama_profil"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_profil" />
-
-            <TextView
-                android:id="@+id/tv_ubah_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/rounded_button_white"
-                android:gravity="center"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="Edit Akun"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/txt_signOut"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_signOut" />
-
-            <TextView
-                android:id="@+id/txt_signOut"
-                android:layout_width="wrap_content"
-                android:layout_height="28dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/rounded_button_white"
-                android:gravity="center"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="Keluar"
-                android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv_ubah_profil"
-                app:layout_constraintTop_toBottomOf="@+id/tv_email_profile" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginRight="8dp"/>
+    </RelativeLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
-
-            <com.frogobox.recycler.FrogoRecyclerView
-                android:id="@+id/rv_diaryTravel"
-                android:layout_width="0dp"
+            android:background="@android:color/transparent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            android:fitsSystemWindows="true">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                android:background="@drawable/background_curve">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:src="@drawable/user_male"
+                    android:id="@+id/iv_avatar_profil"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:id="@+id/tv_nama_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Ridlo Yanuar"
+                    android:layout_marginTop="@dimen/frogo_rv_dimen_8dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_email_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Ridloyanuar@gmail.com"
+                    android:layout_marginTop="@dimen/frogo_rv_dimen_8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="13sp"/>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="Edit Akun"
+                        android:paddingRight="15dp"
+                        android:paddingLeft="15dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:id="@+id/tv_ubah_profil"
+                        android:background="@drawable/rounded_button_white"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginRight="5dp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="Keluar"
+                        android:paddingRight="15dp"
+                        android:paddingLeft="15dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:id="@+id/txt_signOut"
+                        android:background="@drawable/rounded_button_white"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginRight="5dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Kisah Perjalananmu"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_add_story"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="+ Cerita"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Cerita Perjalananmu"/>
+
+                <TextView
+                    android:id="@+id/tv_add_story"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="right"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:text="+ Cerita" />
+
+                </LinearLayout>
+
+                <com.frogobox.recycler.FrogoRecyclerView
+                    android:id="@+id/rv_diaryTravel"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/frogo_rv_dimen_200dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            android:textStyle="bold"
+                            android:text="Petualanganmu"/>
+
+                        <TextView
+                            android:id="@+id/tv_all_journey"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="16dp"
+                            android:gravity="right"
+                            android:textStyle="bold"
+                            android:text="Selengkapnya"
+                            android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+                <com.frogobox.recycler.FrogoRecyclerView
+                    android:id="@+id/rv_ur_journey"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/frogo_rv_dimen_200dp" />
 
 
+            </LinearLayout>
 
 
-</ScrollView>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>
+

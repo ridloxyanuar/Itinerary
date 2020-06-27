@@ -10,6 +10,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.view.View
+import android.widget.HorizontalScrollView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,13 +28,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
+import kotlinx.android.synthetic.main.activity_budaya.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_image.*
 import org.malucky.itinerary.BaseFragment
 import org.malucky.itinerary.EditProfilActivity
-import org.malucky.itinerary.Presenters.KategoriAdapter
-import org.malucky.itinerary.Presenters.NearbyPresenterImp
-import org.malucky.itinerary.Presenters.SlideAdapter
+import org.malucky.itinerary.Presenters.*
 import org.malucky.itinerary.R
 import org.malucky.itinerary.Views.NearbyViews
 import org.malucky.itinerary.data.Kategori
@@ -43,7 +43,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class HomeFragment : BaseFragment(), NearbyViews {
+class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemClickListner{
     private var mainImageUri: Uri? = null
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -152,6 +152,7 @@ class HomeFragment : BaseFragment(), NearbyViews {
             val lng = gps.longitude
 
             presenter.getData(lat.toString(),lng.toString())
+            presenter.getDataPopuler(lat.toString(),lng.toString())
 
             val geocoder = Geocoder(activity, Locale.getDefault())
             val listAddress : List<Address> = geocoder.getFromLocation(lat, lng, 1)
@@ -194,10 +195,19 @@ class HomeFragment : BaseFragment(), NearbyViews {
         var adapter = SlideAdapter(datas)
         imageSlider.setSliderAdapter(adapter)
 
+        var adapterPopuler = PopulerAdapter(datas,this)
+        val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        rv_populer.layoutManager = linearLayoutManager
+        rv_populer.adapter = adapterPopuler
+
     }
 
     override fun Error(pesan: String) {
         Toast.makeText(activity, ""+pesan, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onItemClick(item: List<ResultsItem?>, position: Int) {
+        TODO("Not yet implemented")
     }
 
 

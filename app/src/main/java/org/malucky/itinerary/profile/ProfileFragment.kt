@@ -41,6 +41,11 @@ class ProfileFragment : BaseFragment() {
         val user_id = auth.currentUser!!.uid
         val firebaseFirestore = FirebaseFirestore.getInstance()
 
+        //version
+        val pInfo = activity!!.packageManager.getPackageInfo(activity!!.packageName, 0)
+        val version = "v"+ pInfo.versionName
+        tv_version.text = version
+
         txt_signOut.setOnClickListener {
             createDialogSignout()
         }
