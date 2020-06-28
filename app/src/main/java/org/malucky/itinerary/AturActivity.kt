@@ -1,38 +1,36 @@
 package org.malucky.itinerary
 
 import android.content.Intent
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import kotlinx.android.synthetic.main.activity_atur.*
-import org.malucky.itinerary.Presenters.TimeLineAdapter
-import org.malucky.itinerary.db.CartLocation
-import kotlin.collections.ArrayList
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_atur.*
+import org.malucky.itinerary.Presenters.TimeLineAdapter
 import org.malucky.itinerary.Presenters.TimeLineRatingAdapter
 import org.malucky.itinerary.db.CartDatabase
-import org.malucky.itinerary.itinerary.ItineraryFragment
-import org.malucky.itinerary.kategori.TerdekatActivity
+import org.malucky.itinerary.db.CartLocation
 import org.malucky.itinerary.util.NotifyWork
 import org.malucky.itinerary.util.NotifyWork.Companion.NOTIFICATION_WORK
-import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.Comparator
 
 
-class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
+class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleChoice.SingleChoiceListener{
 
     private lateinit var mLayoutManager: LinearLayoutManager
     private var userDatabase: CartDatabase? = null
+
 
 
     override fun getView(): Int = R.layout.activity_atur
@@ -58,8 +56,9 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
         }
 
         button2.setOnClickListener {
-            //save to my journey
-        }
+            val singleChoiceDialog: DialogFragment = SingleChoice()
+            singleChoiceDialog.setCancelable(false)
+            singleChoiceDialog.show(supportFragmentManager, "Single Choice Dialog")        }
     }
 
     private fun newSchedule() {
@@ -138,6 +137,41 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner {
 
     private fun cleaningJarak(jarak: String): Int {
         return jarak.replace(" m", "").toInt()
+    }
+
+
+    override fun onPositiveButtonClicked(list: Array<String?>?, position: Int) {
+         val pil = list!![position]
+        if (pil!!.equals("Rekomendasi Berdasarkan Jarak")){
+            //jarak
+            val getIntentStringChartLocation = getIntent().getStringExtra("EXTRA_NAME")
+            val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type
+            val listDataChartLocation = Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
+
+            val sortjarak = listDataChartLocation.sortedWith(object : Comparator<CartLocation>{
+                override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
+                    return (cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!))
+                }
+
+            })
+            //////////////////////////////////////////////////////////////////////////////////////
+            Toast.makeText(this, "Jarak", Toast.LENGTH_SHORT).show()
+        }else{
+            //rating
+            val getIntentStringChartLocation = getIntent().getStringExtra("EXTRA_NAME")
+            val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type
+            val listDataChartLocation =
+                Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
+
+            val sortrating = listDataChartLocation.sortedByDescending { it.rate }
+
+            //////////////////////////////////////////////////////////////////////////////////////
+            Toast.makeText(this, "Rating", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onNegativeButtonClicked() {
+        Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
     }
 
 }
