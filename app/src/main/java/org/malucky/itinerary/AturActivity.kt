@@ -1,6 +1,7 @@
 package org.malucky.itinerary
 
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,10 @@ import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.Completable
@@ -19,11 +24,15 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_atur.*
 import org.malucky.itinerary.Presenters.TimeLineAdapter
 import org.malucky.itinerary.Presenters.TimeLineRatingAdapter
+import org.malucky.itinerary.data.Journey
 import org.malucky.itinerary.db.CartDatabase
 import org.malucky.itinerary.db.CartLocation
 import org.malucky.itinerary.util.NotifyWork
 import org.malucky.itinerary.util.NotifyWork.Companion.NOTIFICATION_WORK
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.Comparator
+import kotlin.collections.ArrayList
 
 
 class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleChoice.SingleChoiceListener{
@@ -141,7 +150,11 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleC
 
 
     override fun onPositiveButtonClicked(list: Array<String?>?, position: Int) {
-         val pil = list!![position]
+        val userID = FirebaseAuth.getInstance().currentUser!!.uid
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        storageReference = FirebaseStorage.getInstance().reference
+
+        val pil = list!![position]
         if (pil!!.equals("Rekomendasi Berdasarkan Jarak")){
             //jarak
             val getIntentStringChartLocation = getIntent().getStringExtra("EXTRA_NAME")
@@ -152,8 +165,32 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleC
                 override fun compare(o1: CartLocation?, o2: CartLocation?): Int {
                     return (cleaningJarak(o1?.jarak!!) - cleaningJarak(o2?.jarak!!))
                 }
-
             })
+
+
+            for (i in 0 until sortjarak.size){
+                val namaLok = sortjarak.get(i).namaLokasi
+                val jarakLok = sortjarak.get(i).jarak
+                val latitudeLok = sortjarak.get(i).latitude
+                val longitudeLok = sortjarak.get(i).longitude
+                val rateLok = sortjarak.get(i).rate
+
+                val journeyJarak = Journey(namaLok, jarakLok, rateLok, latitudeLok, longitudeLok, false, Timestamp(Date()), userID)
+
+                firebaseFirestore.collection("Journey")
+                    .add(journeyJarak)
+                    .addOnCompleteListener {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+//                        finish()
+                        Log.d("OnSucces", "Journey added successfully")
+                    }
+                    .addOnFailureListener {
+                        Log.d("OnFailure", it.localizedMessage!!)
+                    }
+            }
+
+
             //////////////////////////////////////////////////////////////////////////////////////
             Toast.makeText(this, "Jarak", Toast.LENGTH_SHORT).show()
         }else{
@@ -164,6 +201,29 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleC
                 Gson().fromJson<List<CartLocation>>(getIntentStringChartLocation, listType)
 
             val sortrating = listDataChartLocation.sortedByDescending { it.rate }
+
+
+            for (i in 0 until sortrating.size){
+                val namaLok = sortrating.get(i).namaLokasi
+                val jarakLok = sortrating.get(i).jarak
+                val latitudeLok = sortrating.get(i).latitude
+                val longitudeLok = sortrating.get(i).longitude
+                val rateLok = sortrating.get(i).rate
+
+                val journey = Journey(namaLok, jarakLok, rateLok, latitudeLok, longitudeLok, false, Timestamp(Date()), userID)
+
+                firebaseFirestore.collection("Journey")
+                    .add(journey)
+                    .addOnCompleteListener {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+//                        finish()
+                        Log.d("OnSucces", "Journey added successfully")
+                    }
+                    .addOnFailureListener {
+                        Log.d("OnFailure", it.localizedMessage!!)
+                    }
+            }
 
             //////////////////////////////////////////////////////////////////////////////////////
             Toast.makeText(this, "Rating", Toast.LENGTH_SHORT).show()

@@ -10,15 +10,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.malucky.itinerary.AddStoryActivity
-import org.malucky.itinerary.BaseFragment
-import org.malucky.itinerary.EditProfilActivity
-import org.malucky.itinerary.R
+import org.malucky.itinerary.*
+import org.malucky.itinerary.data.Journey
 import org.malucky.itinerary.data.Note
 
 
@@ -58,6 +57,11 @@ class ProfileFragment : BaseFragment() {
         tv_add_story.setOnClickListener {
             val intent = Intent(activity, AddStoryActivity::class.java)
             startActivity(intent)
+        }
+
+        tv_all_journey.setOnClickListener {
+            val journeyIntent = Intent(activity, MyJourneyActivity::class.java)
+            startActivity(journeyIntent)
         }
 
         iv_avatar_profil.setVisibility(View.INVISIBLE)
@@ -119,11 +123,18 @@ class ProfileFragment : BaseFragment() {
             //adapter
             val adapterCallback = object : FrogoAdapterCallback<Note> {
                 override fun setupInitComponent(view: View, data: Note) {
-                    view.findViewById<TextView>(R.id.tv_example_item).text = data.gambar
+                    val tanggal = data.created
+                    view.findViewById<TextView>(R.id.tv_judul_cerita).text = data.gambar
+                    view.findViewById<TextView>(R.id.txt_tanggal_cerita).text = tanggal!!.toDate().toLocaleString()
+                    view.findViewById<TextView>(R.id.txt_isi_cerita).text = data.name
                 }
 
                 override fun onItemClicked(data: Note) {
-
+                    val detailCerita = Intent(activity, DetailCeritaActivity::class.java)
+                    detailCerita.putExtra("JUDUL", data.gambar)
+                    detailCerita.putExtra("TANGGAL_CERITA", data.created!!.toDate().toLocaleString())
+                    detailCerita.putExtra("ISI_CERITA", data.name)
+                    startActivity(detailCerita)
                 }
 
                 override fun onItemLongClicked(data: Note) {
@@ -133,12 +144,62 @@ class ProfileFragment : BaseFragment() {
 
             rv_diaryTravel!!.injector<Note>()
                 .addData(notesList)
-                .addCustomView(R.layout.frogo_rv_list_type_1)
+                .addCustomView(R.layout.item_list_story)
                 .addEmptyView(null)
                 .addCallback(adapterCallback)
-                .createLayoutLinearVertical(false)
+                .createLayoutLinearHorizontal(false)
                 .createAdapter()
                 .build(rv_diaryTravel)
+
+        }
+
+        //journey
+        val queryJourney = FirebaseFirestore.getInstance()
+            .collection("Journey")
+            .whereEqualTo("userId", auth.uid)
+            .orderBy("completed", Query.Direction.ASCENDING)
+            .orderBy("created", Query.Direction.DESCENDING)
+
+        queryJourney.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                Log.e("EXCEPTION", "Listen failed!", firebaseFirestoreException)
+//                return@EventListener
+            }
+
+            val journeyList = mutableListOf<Journey>()
+
+            if (querySnapshot != null) {
+                for (doc in querySnapshot) {
+                    val journey = doc.toObject(Journey::class.java)
+                    journeyList.add(journey)
+                }
+            }
+            //adapter
+            val adapterCallback = object : FrogoAdapterCallback<Journey> {
+                override fun setupInitComponent(view: View, data: Journey) {
+                    view.findViewById<TextView>(R.id.txt_namaTempat_journey).text = data.name
+                    view.findViewById<TextView>(R.id.txt_tanggal_journey).text = data.created!!.toDate().toLocaleString()
+                    view.findViewById<TextView>(R.id.txt_ratingTempat_journey).text = data.rate
+                    view.findViewById<TextView>(R.id.txt_jarak_journey).text = data.jarak
+                }
+
+                override fun onItemClicked(data: Journey) {
+
+                }
+
+                override fun onItemLongClicked(data: Journey) {
+
+                }
+            }
+
+            rv_ur_journey!!.injector<Journey>()
+                .addData(journeyList)
+                .addCustomView(R.layout.item_list_journey)
+                .addEmptyView(null)
+                .addCallback(adapterCallback)
+                .createLayoutLinearHorizontal(false)
+                .createAdapter()
+                .build(rv_ur_journey)
 
         }
     }
