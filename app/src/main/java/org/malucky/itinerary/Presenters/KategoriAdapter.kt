@@ -47,14 +47,14 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
             }else if (kategori.ket.equals("Kuliner")){
                 val kulinerIntent = Intent(context, KulinerActivity::class.java)
                 context.startActivity(kulinerIntent)
-            }else if (kategori.ket.equals("Buka & Tutup")){
+            }else if (kategori.ket.equals("Tempat Pendidikan")){
 //                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
                 val hotelIntent = Intent(context, HotelsActivity::class.java)
                 context.startActivity(hotelIntent)
             }else if (kategori.ket.equals("Budaya")){
                 val budayaIntent = Intent(context, BudayaActivity::class.java)
                 context.startActivity(budayaIntent)
-            }else if (kategori.ket.equals("Pengalaman")){
+            }else if (kategori.ket.equals("ATM")){
                 Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
             }else if (kategori.ket.equals("Oleh-Oleh")){
                 val jajanIntent = Intent(context, JajanActivity::class.java)

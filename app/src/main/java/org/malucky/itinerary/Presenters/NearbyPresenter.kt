@@ -9,6 +9,7 @@ interface NearbyPresenter {
     fun getDataBudaya(lat:String,lng:String)
     fun getDataJajan(lat:String,lng:String)
     fun getDataHotel(lat:String,lng:String)
+    fun getDataATM(lat:String,lng:String)
 
     //details_place
     fun getPlaceDetails(placeId: String)

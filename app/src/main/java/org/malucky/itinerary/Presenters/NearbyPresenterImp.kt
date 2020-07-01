@@ -121,6 +121,22 @@ class NearbyPresenterImp : NearbyPresenter{
             })
     }
 
+    override fun getDataATM(lat: String, lng: String) {
+        Urls.service
+            .getHotel(lat+","+lng,"distance", "atm", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                    t: ResponseServer? ->
+
+                var result = t?.results
+                nearbyViews?.Success(result!!)
+                Log.d("data", t?.results.toString())
+            }, {
+                    e -> e.localizedMessage
+            })
+    }
+
     override fun getPlaceDetails(placeId: String) {
         UrlDetails.serviceDetails
             .getPlaceDetails(placeId, "opening_hours", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")

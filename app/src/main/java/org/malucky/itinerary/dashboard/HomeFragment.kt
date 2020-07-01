@@ -178,10 +178,10 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
         var arrayList: ArrayList<Kategori> = ArrayList()
 
         arrayList.add(Kategori(R.drawable.iconnnn_02, "Terdekat"))
-        arrayList.add(Kategori(R.drawable.iconnnn_05, "Buka & Tutup"))
+        arrayList.add(Kategori(R.drawable.iconnnn_05, "Tempat Pendidikan"))
         arrayList.add(Kategori(R.drawable.iconnnn_03, "Kuliner"))
         arrayList.add(Kategori(R.drawable.iconnnn_01, "Budaya"))
-        arrayList.add(Kategori(R.drawable.iconnnn_06, "Pengalaman"))
+        arrayList.add(Kategori(R.drawable.iconnnn_06, "ATM"))
         arrayList.add(Kategori(R.drawable.iconnnn_04, "Oleh-Oleh"))
 
         return arrayList
