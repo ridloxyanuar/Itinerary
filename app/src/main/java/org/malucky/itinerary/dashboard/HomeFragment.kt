@@ -152,7 +152,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
             val lng = gps.longitude
 
             presenter.getData(lat.toString(),lng.toString())
-            presenter.getDataPopuler(lat.toString(),lng.toString())
+//            presenter.getDataPopuler(lat.toString(),lng.toString())
 
             val geocoder = Geocoder(activity, Locale.getDefault())
             val listAddress : List<Address> = geocoder.getFromLocation(lat, lng, 1)
@@ -178,7 +178,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
         var arrayList: ArrayList<Kategori> = ArrayList()
 
         arrayList.add(Kategori(R.drawable.iconnnn_02, "Terdekat"))
-        arrayList.add(Kategori(R.drawable.iconnnn_05, "Tempat Pendidikan"))
+        arrayList.add(Kategori(R.drawable.iconnnn_05, "Museum"))
         arrayList.add(Kategori(R.drawable.iconnnn_03, "Kuliner"))
         arrayList.add(Kategori(R.drawable.iconnnn_01, "Budaya"))
         arrayList.add(Kategori(R.drawable.iconnnn_06, "ATM"))
@@ -195,7 +195,9 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
         var adapter = SlideAdapter(datas)
         imageSlider.setSliderAdapter(adapter)
 
-        var adapterPopuler = PopulerAdapter(datas,this)
+        val sortingPopuler = datas.sortedByDescending { it!!.rating }
+
+        var adapterPopuler = PopulerAdapter(sortingPopuler,this)
         val linearLayoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         rv_populer.layoutManager = linearLayoutManager
         rv_populer.adapter = adapterPopuler

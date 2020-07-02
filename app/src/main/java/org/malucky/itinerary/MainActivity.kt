@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,42 +30,27 @@ class MainActivity: BaseActivity(){
 
 
     override fun onActivityCreated() {
-
-        val homeFragment = HomeFragment()
-        val itineraryFragment = ItineraryFragment()
-        val profilFragment = ProfileFragment()
-        replaceFragment(homeFragment)
-
-
-        bottom_navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.homeFragment -> {
-                    replaceFragment(homeFragment)
-                    true
-                }
-                R.id.itineraryFragment -> {
-                    replaceFragment(itineraryFragment)
-                    true
-                }
-                R.id.profileFragment -> {
-                    replaceFragment(profilFragment)
-                    true
-                }
-                else -> false
-            }
-        })
-//        bottom_navigation.getLayoutParams().behavior = BottomNavigationBehavior()
-
-        bottom_navigation.setSelectedItemId(R.id.homeFragment)
+        navController = Navigation.findNavController(this,R.id.nav_host_fragment)
+        bottom_navigation.setupWithNavController(navController)
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_container, fragment)
-        fragmentTransaction.commit()
+    override fun onBackPressed() = when{
+        navController.graph.startDestination == navController.currentDestination?.id -> showQuitDialog()
+        else -> super.onBackPressed()
     }
 
-
+    private fun showQuitDialog() {
+        val dialog = MaterialDialog(this).title(null,"Quit")
+            .message(null, "Are you sure you want to quit?")
+            .positiveButton(null,"Yes",{
+                it.dismiss()
+                finish()
+            }).noAutoDismiss().cancelable(false)
+            .negativeButton(null,"Cancel",{
+                it.dismiss()
+            })
+        dialog.show()
+    }
 }
 
 
