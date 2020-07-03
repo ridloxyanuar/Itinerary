@@ -10,7 +10,7 @@
         android:layout_width="@dimen/frogo_rv_dimen_200dp"
         android:layout_height="@dimen/frogo_rv_dimen_150dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +22,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
         android:gravity="center_horizontal"
+        android:maxLines="1"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/iv_populer"
         app:layout_constraintStart_toStartOf="@+id/iv_populer"
         app:layout_constraintTop_toBottomOf="@+id/iv_populer" />
+
+    <Button
+        android:id="@+id/btn_add_pop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button"
+        android:text="Tambah Lokasi"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_populer"
+        app:layout_constraintStart_toStartOf="@+id/tv_populer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_populer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_budaya.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_image.*
 import org.malucky.itinerary.BaseFragment
+import org.malucky.itinerary.DetailLocationActivity
 import org.malucky.itinerary.EditProfilActivity
 import org.malucky.itinerary.Presenters.*
 import org.malucky.itinerary.R
@@ -209,7 +210,15 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
     }
 
     override fun onItemClick(item: List<ResultsItem?>, position: Int) {
-        TODO("Not yet implemented")
+        val intent = Intent(activity, DetailLocationActivity::class.java)
+        intent.putExtra("IMAGE", item.get(position)?.photos?.get(0)?.photoReference)
+        intent.putExtra("PLACE_ID", item.get(position)?.placeId)
+        intent.putExtra("LOCATION_NAME", item.get(position)?.name)
+        intent.putExtra("LOCATION_VICINITY", item.get(position)?.vicinity)
+        intent.putExtra("LOCATION_RATING", item.get(position)?.rating.toString())
+        intent.putExtra("LOCATION_LAT", item.get(position)?.geometry?.location?.lat)
+        intent.putExtra("LOCATION_LNG", item.get(position)?.geometry?.location?.lng)
+        startActivity(intent)
     }
 
 

@@ -51,7 +51,7 @@ class AtmActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemCli
                     val lati = location?.latitude
                     val lng = location?.longitude
 
-                    presenter.getDataBudaya(lati.toString(),lng.toString())
+                    presenter.getDataATM(lati.toString(),lng.toString())
 
                 }
         } else {

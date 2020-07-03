@@ -43,8 +43,8 @@ class PopulerAdapter(data: List<ResultsItem?>, var onClickListener: OnLocationIt
     init {
         this.ambilData = data
     }
-//    private lateinit var userDatabase: CartDatabase
-//    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var userDatabase: CartDatabase
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
 
@@ -66,7 +66,7 @@ class PopulerAdapter(data: List<ResultsItem?>, var onClickListener: OnLocationIt
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         holder.bind(ambilData, position,onClickListener)
         val poto = holder.itemView.iv_populer
-        val add_location = holder.itemView.button3
+        val add_location = holder.itemView.btn_add_pop
         val placeId  = ambilData.get(position)?.placeId
         val photoRef = ambilData.get(position)?.photos?.get(0)?.photoReference
 
@@ -78,89 +78,88 @@ class PopulerAdapter(data: List<ResultsItem?>, var onClickListener: OnLocationIt
             .into(poto)
 
 
-//        userDatabase = CartDatabase.getInstance(context)
+        userDatabase = CartDatabase.getInstance(context)
 
         //ini fungsi tombolnya
-//        add_location.setOnClickListener{
-//
-//            var status = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-////        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-//
-//            if (status == PackageManager.PERMISSION_GRANTED) {
-//                fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-//                fusedLocationClient.lastLocation
-//                    .addOnSuccessListener { location : Location? ->
-//                        val lati = location?.latitude
-//                        val lng = location?.longitude
-//
-//                        val latitude = ambilData.get(position)?.geometry?.location?.lat.toString()
-//                        val longitude = ambilData.get(position)?.geometry?.location?.lng.toString()
-//
-//                        val havLoga = haversine(lati!!.toDouble(),lng!!.toDouble(), latitude.toDouble() , longitude.toDouble())
-//
-//                        val hasilHaversine = (havLoga * 1000).toInt()
-//
-//                        jarak = hasilHaversine.toString() + " m"
-//
-//                        val rating = ambilData.get(position)?.rating.toString()
-//
-//                        if (rating.equals("null")){
-//                            val rate = "0 Rating"
-//                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
-//                                ambilData.get(position)?.name.toString(),
-//                                ambilData.get(position)?.geometry?.location?.lat.toString(),
-//                                ambilData.get(position)?.geometry?.location?.lng.toString(),
-//                                rate,
-//                                jarak)
-//                            val intent = Intent(context, CartActivity::class.java)
-//                            context.startActivity(intent)
-//                        }else{
-//                            val rate = rating + " Rating"
-//                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
-//                                ambilData.get(position)?.name.toString(),
-//                                ambilData.get(position)?.geometry?.location?.lat.toString(),
-//                                ambilData.get(position)?.geometry?.location?.lng.toString(),
-//                                rate,
-//                                jarak)
-//                            val intent = Intent(context, CartActivity::class.java)
-//                            context.startActivity(intent)
-//                        }
-//
-//
-//
-//                    }
-//            } else {
-//                ActivityCompat.requestPermissions(
-//                    context as Activity,
-//                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-//                    123
-//                )
-//            }
-//
-//
-//        }
+        add_location.setOnClickListener{
+        var status = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+            if (status == PackageManager.PERMISSION_GRANTED) {
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location : Location? ->
+                        val lati = location?.latitude
+                        val lng = location?.longitude
+
+                        val latitude = ambilData.get(position)?.geometry?.location?.lat.toString()
+                        val longitude = ambilData.get(position)?.geometry?.location?.lng.toString()
+
+                        val havLoga = haversine(lati!!.toDouble(),lng!!.toDouble(), latitude.toDouble() , longitude.toDouble())
+
+                        val hasilHaversine = (havLoga * 1000).toInt()
+
+                        jarak = hasilHaversine.toString() + " m"
+
+                        val rating = ambilData.get(position)?.rating.toString()
+
+                        if (rating.equals("null")){
+                            val rate = "0 Rating"
+                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
+                                ambilData.get(position)?.name.toString(),
+                                ambilData.get(position)?.geometry?.location?.lat.toString(),
+                                ambilData.get(position)?.geometry?.location?.lng.toString(),
+                                rate,
+                                jarak)
+                            val intent = Intent(context, CartActivity::class.java)
+                            context.startActivity(intent)
+                        }else{
+                            val rate = rating + " Rating"
+                            inserta(ambilData.get(position)?.photos?.get(0)?.photoReference.toString(),
+                                ambilData.get(position)?.name.toString(),
+                                ambilData.get(position)?.geometry?.location?.lat.toString(),
+                                ambilData.get(position)?.geometry?.location?.lng.toString(),
+                                rate,
+                                jarak)
+                            val intent = Intent(context, CartActivity::class.java)
+                            context.startActivity(intent)
+                        }
+
+
+
+                    }
+            } else {
+                ActivityCompat.requestPermissions(
+                    context as Activity,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    123
+                )
+            }
+
+
+        }
 
 
     }
 
-//    private fun inserta(gambar: String, name: String, latitude: String, longitude: String, rate: String, jarak: String) {
-//        Completable.fromAction { val data = CartLocation(gambar,name, latitude,longitude,rate, jarak)
-//            userDatabase.cartLocationDatabaseDAO.insert(data)
-//        }.observeOn(AndroidSchedulers.mainThread())
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(object : CompletableObserver {
-//                override fun onSubscribe(d: Disposable) {}
-//
-//                override fun onComplete() {
-//                    toast("Data store successfully")
-//                    notifyDataSetChanged()
-//                }
-//
-//                override fun onError(e: Throwable) {
-//                    toast(e.message.toString())
-//                }
-//            })
-//    }
+    private fun inserta(gambar: String, name: String, latitude: String, longitude: String, rate: String, jarak: String) {
+        Completable.fromAction { val data = CartLocation(gambar,name, latitude,longitude,rate, jarak)
+            userDatabase.cartLocationDatabaseDAO.insert(data)
+        }.observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(object : CompletableObserver {
+                override fun onSubscribe(d: Disposable) {}
+
+                override fun onComplete() {
+                    toast("Data store successfully")
+                    notifyDataSetChanged()
+                }
+
+                override fun onError(e: Throwable) {
+                    toast(e.message.toString())
+                }
+            })
+    }
 
     private fun toast(s: String) {
         Toast.makeText(context,s, Toast.LENGTH_SHORT).show()
