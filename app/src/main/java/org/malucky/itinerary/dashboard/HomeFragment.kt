@@ -149,6 +149,13 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
     private fun initView(gps: GPSTracker?) {
 //        var result = 0.0
         if (gps!!.canGetLocation()){
+
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                123
+            )
+            
             val lat = gps.latitude
             val lng = gps.longitude
 
@@ -168,6 +175,13 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
             }
 
         }else{
+
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                123
+            )
+
             gps.showSettingsAlert()
             tv_lokasi.text = "Lokasi Tidak ditemukan"
 
