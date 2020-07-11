@@ -155,7 +155,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 123
             )
-            
+
             val lat = gps.latitude
             val lng = gps.longitude
 
