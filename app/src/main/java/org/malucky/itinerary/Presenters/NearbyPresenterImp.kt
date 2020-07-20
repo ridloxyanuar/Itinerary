@@ -107,7 +107,7 @@ class NearbyPresenterImp : NearbyPresenter{
 
     override fun getDataHotel(lat: String, lng: String) {
         Urls.service
-            .getHotel(lat+","+lng,"distance", "museum", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .getHotel(lat+","+lng,"distance", "car_rental", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
@@ -123,7 +123,7 @@ class NearbyPresenterImp : NearbyPresenter{
 
     override fun getDataATM(lat: String, lng: String) {
         Urls.service
-            .getHotel(lat+","+lng,"distance", "atm", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
+            .getHotel(lat+","+lng,"distance", "gas_station", "AIzaSyBopZTpiQKeyI3lFE9oypdFz_vjnZga7-c")
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe ({
