@@ -30,7 +30,7 @@ class HotelsActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItem
     override fun getView(): Int = R.layout.activity_hotels
 
     override fun onActivityCreated() {
-        toolbar_hotel.setTitle("Museum Sekitar Kamu")
+        toolbar_hotel.setTitle("Rental Mobil")
         setSupportActionBar(toolbar_budaya)
 
         toolbar_hotel.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

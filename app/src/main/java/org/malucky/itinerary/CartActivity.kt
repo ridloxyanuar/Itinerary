@@ -108,22 +108,6 @@ class CartActivity : BaseActivity() {
         }
     }
 
-//    private fun setupAdapter(result: List<CartLocation>) {
-//        mainAd = CartAdapter(result, this@CartActivity, object : CartCallback {
-//            override fun onItemClick(listData: List<CartLocation>) {
-//                setupNavigatePenjalanan(listData)
-//            }
-//        })
-//
-//
-//        rv_cart.apply {
-//            layoutManager = LinearLayoutManager(context)
-//            adapter = mainAd
-//        }
-//
-//        rv_cart.setNestedScrollingEnabled(false)
-//    }
-
 
     private fun readData() {
         userDatabase!!.cartLocationDatabaseDAO.getAllLocation()

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iTraveller</string>
+    <string name="app_name">iTravel</string>
     <string name="title_activity_maps">Map</string>
     <string-array name="choice_items">
         <item>Rekomendasi Berdasarkan Jarak</item>

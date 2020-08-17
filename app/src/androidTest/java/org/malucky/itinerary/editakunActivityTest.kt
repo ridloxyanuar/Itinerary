@@ -4,6 +4,8 @@ package org.malucky.itinerary
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.UiController
+import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -111,42 +113,35 @@ class editakunActivityTest {
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
-        val bottomNavigationItemView = onView(
-            allOf(
-                withId(R.id.profileFragment), withContentDescription("Profile"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.bottom_navigation),
-                        0
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView.perform(click())
+        onView(withId(R.id.profileFragment)).perform(forceClick())
+
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(5000)
 
-        val appCompatTextView = onView(
-            allOf(
-                withId(R.id.tv_ubah_profil), withText("Edit Akun"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.constraintLayout3),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            0
-                        )
-                    ),
-                    3
-                )
-            )
-        )
-        appCompatTextView.perform(scrollTo(), click())
+        onView(withId(R.id.tv_ubah_profil)).perform(forceClick())
+
+        Thread.sleep(5000)
+
+    }
+
+    fun forceClick(): ViewAction? {
+        return object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return allOf(isClickable(), isEnabled(), isDisplayed())
+            }
+
+            override fun getDescription(): String {
+                return "force click"
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                view.performClick() // perform click without checking view coordinates.
+                uiController.loopMainThreadUntilIdle()
+            }
+        }
     }
 
     private fun childAtPosition(

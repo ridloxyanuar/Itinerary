@@ -36,6 +36,13 @@ class ItineraryFragment : BaseFragment(),NearbyViews, NearbyAdapter.OnLocationIt
 
 
     override fun onFragmentCreated() {
+        main_lay_reload_itinerary.setOnRefreshListener {
+            initPresenter()
+            initView()
+
+            main_lay_reload_itinerary.isRefreshing = false
+        }
+
         initPresenter()
         initView()
 

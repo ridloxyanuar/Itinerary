@@ -21,9 +21,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class DetailLokasiTest {
+class TambahLokasiActivityTest {
 
     @Rule
     @JvmField
@@ -37,7 +38,10 @@ class DetailLokasiTest {
         )
 
     @Test
-    fun detailLokasiTest() {
+    fun tambahLokasiActivityTest() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
         val appCompatEditText = onView(
@@ -72,19 +76,7 @@ class DetailLokasiTest {
         )
         appCompatEditText2.perform(scrollTo(), replaceText("abcde123"), closeSoftKeyboard())
 
-        val appCompatEditText3 = onView(
-            allOf(
-                withId(R.id.et_pass_login), withText("abcde123"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    1
-                )
-            )
-        )
-        appCompatEditText3.perform(pressImeActionButton())
+
 
         val appCompatButton = onView(
             allOf(
@@ -100,47 +92,45 @@ class DetailLokasiTest {
         )
         appCompatButton.perform(scrollTo(), click())
 
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        Thread.sleep(7000)
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         Thread.sleep(7000)
 
 
-        val constraintLayout = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.rv_kategori),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            1
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        constraintLayout.perform(click())
+        onView(withId(R.id.itineraryFragment)).perform(forceClick())
 
-        Thread.sleep(7000)
 
-        val constraintLayout2 = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.rv_terdekat),
-                        childAtPosition(
-                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                            1
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        constraintLayout2.perform(click())
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        Thread.sleep(5000)
 
-        Thread.sleep(7000)
+//        onView(withId(R.id.button3)).perform(forceClick())
+        onView(withIndex(withId(R.id.button3), 1)).perform(forceClick())
+    }
 
+    fun withIndex(
+        matcher: Matcher<View?>,
+        index: Int
+    ): Matcher<View?>? {
+        return object : TypeSafeMatcher<View?>() {
+            var currentIndex = 0
+            override fun describeTo(description: Description) {
+                description.appendText("with index: ")
+                description.appendValue(index)
+                matcher.describeTo(description)
+            }
+
+            override fun matchesSafely(view: View?): Boolean {
+                return matcher.matches(view) && currentIndex++ == index
+            }
+        }
     }
 
     fun forceClick(): ViewAction? {
@@ -159,7 +149,6 @@ class DetailLokasiTest {
             }
         }
     }
-
     private fun childAtPosition(
         parentMatcher: Matcher<View>, position: Int
     ): Matcher<View> {

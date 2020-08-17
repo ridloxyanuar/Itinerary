@@ -89,7 +89,6 @@ class SignUpActivity : BaseActivity() {
         }
 
         if (pass.equals(konf)){
-//            valid = true
             valid
         } else{
             valid = false
