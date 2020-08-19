@@ -17,7 +17,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:background="@android:color/transparent">
+    android:background="@color/mainBackground">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,9 +94,10 @@
             android:drawableLeft="@android:drawable/ic_menu_search"
             android:editable="false"
             android:ems="10"
+            android:textColorHint="@color/mainHint"
             android:hint="Mau Kemana Hari Ini?"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/imageView7"
+            app:layout_constraintEnd_toStartOf="@+id/iv_darkmode"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -113,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/iv_darkmode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -160,6 +161,7 @@
             android:layout_marginTop="16dp"
             android:text="Tempat Populer"
             android:textStyle="bold"
+            android:textColor="@color/mainTeks"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_kategori" />
 

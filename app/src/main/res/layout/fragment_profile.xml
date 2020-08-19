@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:background="@android:color/transparent">
+    android:background="@color/mainBackground">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/header_height"
@@ -136,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:textColor="@color/mainTeks"
                     android:text="Cerita Perjalananmu"/>
 
                 <TextView
@@ -145,7 +146,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/Teks2"
                     android:textStyle="bold"
                     android:text="+ Cerita" />
 
@@ -166,6 +167,7 @@
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
                             android:textStyle="bold"
+                            android:textColor="@color/mainTeks"
                             android:text="Petualanganmu"/>
 
                         <TextView
@@ -177,7 +179,7 @@
                             android:gravity="right"
                             android:textStyle="bold"
                             android:text="Selengkapnya"
-                            android:textColor="@color/colorPrimary"/>
+                            android:textColor="@color/Teks2"/>
                 </LinearLayout>
 
                 <com.frogobox.recycler.FrogoRecyclerView

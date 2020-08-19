@@ -13,6 +13,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday"
         app:layout_constraintTop_toBottomOf="@+id/tv_weekday" />
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday1"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday1"
         app:layout_constraintTop_toBottomOf="@+id/tv_weekday1" />
@@ -44,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday2"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday2"
         app:layout_constraintTop_toBottomOf="@+id/tv_weekday2" />
@@ -54,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday3"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday3"
         app:layout_constraintTop_toBottomOf="@+id/tv_weekday3" />
@@ -64,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday4"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday4"
         app:layout_constraintTop_toBottomOf="@+id/tv_weekday4" />
@@ -75,6 +81,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_weekday5"
         app:layout_constraintStart_toStartOf="@+id/tv_weekday5"

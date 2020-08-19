@@ -1,10 +1,12 @@
 package org.malucky.itinerary
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.afollestad.materialdialogs.MaterialDialog
 import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,7 +22,7 @@ class MyJourneyActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        toolbar_my_journey.setTitle("History Journey")
+        toolbar_my_journey.setTitle("Petualanganmu")
         toolbar_my_journey.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         toolbar_my_journey.setNavigationOnClickListener {
             finish()
@@ -58,7 +60,16 @@ class MyJourneyActivity : BaseActivity() {
                 }
 
                 override fun onItemClicked(data: Journey) {
+                    val dialog = MaterialDialog(this@MyJourneyActivity).title(null,"Petualangamu")
+                        .message(null, "Apakah " + data.name + " Sudah Dikunjungi ?")
+                        .negativeButton(null,"Belum") {
+                            it.dismiss()
+                        }
+                        .positiveButton(null,"Sudah",{
 
+                            it.dismiss()
+                        }).noAutoDismiss().cancelable(false)
+                    dialog.show()
                 }
 
                 override fun onItemLongClicked(data: Journey) {

@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -15,13 +16,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/mainBackground">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/mainButton"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +53,7 @@
             android:layout_marginEnd="16dp"
             android:text="Detail Judul"
             android:textStyle="bold"
+            android:textColor="@color/mainTeks"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Detail Vicinity"
+            android:textColor="@color/mainTeks"
             app:layout_constraintEnd_toEndOf="@+id/txt_judul_detail"
             app:layout_constraintStart_toStartOf="@+id/txt_judul_detail"
             app:layout_constraintTop_toBottomOf="@+id/txt_judul_detail" />
@@ -71,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/mainTeks"
             app:layout_constraintEnd_toEndOf="@+id/txt_vicinity_detail"
             app:layout_constraintStart_toStartOf="@+id/txt_vicinity_detail"
             app:layout_constraintTop_toBottomOf="@+id/txt_vicinity_detail" />
@@ -95,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Jam Buka :"
+            android:textColor="@color/mainTeks"
             app:layout_constraintEnd_toEndOf="@+id/txt_rating_detail"
             app:layout_constraintStart_toStartOf="@+id/txt_rating_detail"
             app:layout_constraintTop_toBottomOf="@+id/txt_rating_detail" />

@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/mainEditTeks"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:background="@color/mainEditTeks"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,6 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="@color/mainItem"
             android:layout_height="match_parent">
 
             <ImageView
@@ -45,6 +48,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Jalan Braga"
+                android:textColor="@color/mainTeks"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +63,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Deskripsi"
+                android:textColor="@color/mainTeks"
                 app:layout_constraintEnd_toEndOf="@+id/txt_namaTempat"
                 app:layout_constraintStart_toStartOf="@+id/txt_namaTempat"
                 app:layout_constraintTop_toBottomOf="@+id/txt_namaTempat" />
@@ -70,6 +75,7 @@
                 android:layout_marginTop="8dp"
                 android:text="4 km"
                 android:textStyle="bold"
+                android:textColor="@color/mainTeks"
                 app:layout_constraintEnd_toEndOf="@+id/txt_alamtTempat"
                 app:layout_constraintStart_toStartOf="@+id/txt_alamtTempat"
                 app:layout_constraintTop_toBottomOf="@+id/txt_alamtTempat" />

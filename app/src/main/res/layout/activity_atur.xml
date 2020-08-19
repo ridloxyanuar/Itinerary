@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".AturActivity">
 
 
@@ -18,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/colorPrimary" />
+        app:titleTextColor="@color/Teks2" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -85,6 +86,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Hasil Rekomendasi Berdasarkan Jarak"
                 android:textStyle="bold"
+                android:textColor="@color/mainTeks"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/mainTeks"
                 android:text="Hasil Rekomendasi Berdasarkan Rating"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

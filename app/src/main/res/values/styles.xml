@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/mainTeks</item>
     </style>
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -18,6 +19,7 @@
         <item name="colorControlNormal">@color/textColor</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="actionMenuTextColor">@color/mainTeks</item>
     </style>
 
     <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".CartActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/colorPrimary" />
+        app:titleTextColor="@color/Teks2" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -42,7 +43,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/mainBackground">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -64,6 +66,7 @@
                     android:layout_marginEnd="8dp"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:textColor="@color/mainTeks"
                     android:text="Bandung"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -78,6 +81,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Lokasi Kamu"
+                    android:textColor="@color/mainTeks"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +113,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/mainBackground">
 
                 <com.frogobox.recycler.FrogoRecyclerView
                     android:id="@+id/rv_cart"
@@ -132,6 +137,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Pilihan Lokasi"
+                    android:textColor="@color/mainTeks"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

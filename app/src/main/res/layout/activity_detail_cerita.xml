@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".DetailCeritaActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -27,6 +28,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center_horizontal"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/tv_judulCerita_detail"
         app:layout_constraintStart_toStartOf="@+id/tv_judulCerita_detail"
@@ -50,6 +53,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
+        android:textColor="@color/mainTeks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_tanggalCerita_detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_tanggalCerita_detail" />

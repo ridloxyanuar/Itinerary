@@ -29,6 +29,22 @@
     <color name="bg_onduty_light">#FFE0B2</color>
     <color name="borderTableColor">#C4CDE0</color>
 
+    <!-- DARK MODE-->
+    <color name="mainBackground">#fafafa</color>
+    <color name="mainHeader1">#42A5F5</color>
+    <color name="mainHeader2">#1976D2</color>
+    <color name="mainTeks">#757575</color>
+    <color name="mainCircle">#E1F5FE</color>
+    <color name="mainEditTeks">#ffffff</color>
+    <color name="mainHint">#757575</color>
+    <color name="mainSplash">#1976D2</color>
+    <color name="mainButton">#1976D2</color>
+    <color name="mainItem">#ffffff</color>
+    <color name="mainToolbar">#ffffff</color>
+    <color name="mainNavigation">#fafafa</color>
+    <color name="Teks2">#1976D2</color>
+
+
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>

@@ -35,14 +35,14 @@ class SlideAdapter(data: List<ResultsItem?>) : SliderViewAdapter<SlideAdapter.Sl
     }
 
     override fun getCount(): Int {
-//        if (ambilData.isEmpty()){
-//            return 0
-//        }else{
-//            return 5
-//        }
-//
-//        return 5
-        return 0
+        if (ambilData.isEmpty()){
+            return 0
+        }else{
+            return 5
+        }
+
+        return 5
+//        return 0
     }
 
     override fun onBindViewHolder(viewHolder: SliderAdapterVH?, position: Int) {
