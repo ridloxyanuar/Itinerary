@@ -38,7 +38,7 @@ class JajanActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemC
     override fun getView(): Int = R.layout.activity_jajan
 
     override fun onActivityCreated() {
-        toolbar_jajan.setTitle("Oleh-Oleh Sekitar Kamu")
+        toolbar_jajan.setTitle(getString(R.string.jajan))
         setSupportActionBar(toolbar_jajan)
 
         toolbar_jajan.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

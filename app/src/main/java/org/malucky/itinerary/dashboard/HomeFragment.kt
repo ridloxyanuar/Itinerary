@@ -75,27 +75,27 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
 
     override fun onFragmentCreated() {
         //darkmode
-        val appSettingPrefs: SharedPreferences = activity!!.getSharedPreferences("AppSettingPrefs", 0)
-        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
-        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
-
-        if(isNightModeOn){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-
-        iv_darkmode.setOnClickListener {
-            if(isNightModeOn){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefsEdit.putBoolean("NightMode", false)
-                sharedPrefsEdit.apply()
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefsEdit.putBoolean("NightMode", true)
-                sharedPrefsEdit.apply()
-            }
-        }
+//        val appSettingPrefs: SharedPreferences = activity!!.getSharedPreferences("AppSettingPrefs", 0)
+//        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
+//        val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
+//
+//        if(isNightModeOn){
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        } else {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//        }
+//
+//        iv_darkmode.setOnClickListener {
+//            if(isNightModeOn){
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//                sharedPrefsEdit.putBoolean("NightMode", false)
+//                sharedPrefsEdit.apply()
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//                sharedPrefsEdit.putBoolean("NightMode", true)
+//                sharedPrefsEdit.apply()
+//            }
+//        }
 
         main_lay_reload.setOnRefreshListener {
             gps = GPSTracker(activity)
@@ -145,7 +145,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
 
                     if (name == null && image == null){
                         mainImageUri == null
-                        tv_name.setText("nama lengkap")
+                        tv_name.setText(getString(R.string.fullname))
                     }else{
                         mainImageUri = Uri.parse(image)
                         tv_name.setText(name)
@@ -204,7 +204,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
 
                 tv_lokasi.text = hasil
             }else{
-                tv_lokasi.text = "Lokasi Tidak ditemukan"
+                tv_lokasi.text = getString(R.string.notfound)
             }
 
         }else{
@@ -216,7 +216,7 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
             )
 
             gps.showSettingsAlert()
-            tv_lokasi.text = "Lokasi Tidak ditemukan"
+            tv_lokasi.text = getString(R.string.notfound)
 
         }
     }
@@ -225,12 +225,12 @@ class HomeFragment : BaseFragment(), NearbyViews ,PopulerAdapter.OnLocationItemC
     private fun setKategori(): ArrayList<Kategori> {
         var arrayList: ArrayList<Kategori> = ArrayList()
 
-        arrayList.add(Kategori(R.drawable.iconnnn_02, "Terdekat"))
-        arrayList.add(Kategori(R.drawable.iconcarrr, "Rental Mobil"))
-        arrayList.add(Kategori(R.drawable.iconnnn_03, "Kuliner"))
-        arrayList.add(Kategori(R.drawable.iconnnn_01, "Budaya"))
-        arrayList.add(Kategori(R.drawable.iconspbufix, "SPBU"))
-        arrayList.add(Kategori(R.drawable.iconnnn_04, "Oleh-Oleh"))
+        arrayList.add(Kategori(R.drawable.iconnnn_02, getString(R.string.kategori_terdekat)))
+        arrayList.add(Kategori(R.drawable.iconcarrr, getString(R.string.kategori_rental)))
+        arrayList.add(Kategori(R.drawable.iconnnn_03, getString(R.string.kategori_kuliner)))
+        arrayList.add(Kategori(R.drawable.iconnnn_01, getString(R.string.kategori_budaya)))
+        arrayList.add(Kategori(R.drawable.iconspbufix, getString(R.string.kategori_spbu)))
+        arrayList.add(Kategori(R.drawable.iconnnn_04, getString(R.string.kategori_jajan)))
 
         return arrayList
     }

@@ -32,7 +32,7 @@ class EditProfilActivity : BaseActivity() {
         firebaseFirestore = FirebaseFirestore.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
-        setupToolbar.setTitle("Edit Profil")
+        setupToolbar.setTitle(getString(R.string.edit_profil))
         setupToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
 
         setupToolbar.setOnClickListener {

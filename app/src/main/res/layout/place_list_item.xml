@@ -100,7 +100,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_button"
-                android:text="Tambah Lokasi"
+                android:text="@string/tambah_lokasi"
                 android:textColor="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/txt_open_hours"

@@ -66,7 +66,7 @@ class CartActivity : BaseActivity() {
 
                         textView8.text = hasil
                     }else{
-                        textView8.text = "Lokasi Tidak ditemukan"
+                        textView8.text = getString(R.string.notfound)
                     }
 
                 }
@@ -79,7 +79,7 @@ class CartActivity : BaseActivity() {
         }
 
 
-        toolbar_cart.setTitle("Atur Perjalanan")
+        toolbar_cart.setTitle(getString(R.string.atur_perjalanan))
         setSupportActionBar(toolbar_terdekat)
 
         toolbar_cart.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
@@ -95,7 +95,7 @@ class CartActivity : BaseActivity() {
         }
 
         imageButton.setOnClickListener {
-            bottomSheetConfirmationDialog("Detail Lokasi", textView8.text.toString())
+            bottomSheetConfirmationDialog(getString(R.string.detail_lokasi), textView8.text.toString())
         }
     }
 

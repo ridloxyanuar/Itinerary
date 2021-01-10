@@ -40,8 +40,8 @@ class MainActivity: BaseActivity(){
     }
 
     private fun showQuitDialog() {
-        val dialog = MaterialDialog(this).title(null,"Quit")
-            .message(null, "Are you sure you want to quit?")
+        val dialog = MaterialDialog(this).title(null,getString(R.string.quit))
+            .message(null, getString(R.string.are_u_sure))
             .positiveButton(null,"Yes",{
                 it.dismiss()
                 finish()

@@ -12,7 +12,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import org.malucky.itinerary.data.Kategori
 import org.malucky.itinerary.data.ResultsItem
+import org.malucky.itinerary.data.Settings
 import org.malucky.itinerary.reusable.Navigator
 
 abstract class BaseActivity: AppCompatActivity() {
@@ -20,6 +22,8 @@ abstract class BaseActivity: AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var firebaseFirestore: FirebaseFirestore
     lateinit var storageReference: StorageReference
+    var settingsItem: ArrayList<Settings>? = null
+
 
     var navigate: Navigator = Navigator()
 

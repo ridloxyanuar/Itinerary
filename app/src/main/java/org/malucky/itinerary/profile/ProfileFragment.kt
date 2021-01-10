@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.malucky.itinerary.*
+import org.malucky.itinerary.data.History
 import org.malucky.itinerary.data.Journey
 import org.malucky.itinerary.data.Note
 
@@ -43,7 +44,12 @@ class ProfileFragment : BaseFragment() {
         //version
         val pInfo = activity!!.packageManager.getPackageInfo(activity!!.packageName, 0)
         val version = "v"+ pInfo.versionName
-        tv_version.text = version
+//        tv_version.text = version
+
+        iv_setting.setOnClickListener {
+            val settingIntent = Intent(activity, SettingsActivity::class.java)
+            startActivity(settingIntent)
+        }
 
         txt_signOut.setOnClickListener {
             createDialogSignout()
@@ -64,6 +70,11 @@ class ProfileFragment : BaseFragment() {
             startActivity(journeyIntent)
         }
 
+        tv_history.setOnClickListener {
+            val historyIntent = Intent(activity, MyJourneyActivity::class.java)
+            startActivity(historyIntent)
+        }
+
         iv_avatar_profil.setVisibility(View.INVISIBLE)
         tv_nama_profil.setVisibility(View.INVISIBLE)
         tv_email_profile.setVisibility(View.INVISIBLE)
@@ -79,7 +90,7 @@ class ProfileFragment : BaseFragment() {
 
                     if (name == null && image == null){
                         mainImageUri == null
-                        tv_nama_profil.setText("nama lengkap")
+                        tv_nama_profil.setText(getString(R.string.fullname))
                         tv_email_profile.text = auth.currentUser?.email
                     }else{
                         mainImageUri = Uri.parse(image)
@@ -200,6 +211,57 @@ class ProfileFragment : BaseFragment() {
                 .createLayoutLinearHorizontal(false)
                 .createAdapter()
                 .build(rv_ur_journey)
+
+        }
+
+
+        //History
+        val queryHistory = FirebaseFirestore.getInstance()
+            .collection("History")
+            .whereEqualTo("userId", auth.uid)
+            .orderBy("completed", Query.Direction.ASCENDING)
+            .orderBy("created", Query.Direction.DESCENDING)
+
+        queryHistory.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                Log.e("EXCEPTION", "Listen failed!", firebaseFirestoreException)
+//                return@EventListener
+            }
+
+            val historyList = mutableListOf<History>()
+
+            if (querySnapshot != null) {
+                for (doc in querySnapshot) {
+                    val history = doc.toObject(History::class.java)
+                    historyList.add(history)
+                }
+            }
+            //adapter
+            val adapterCallback = object : FrogoAdapterCallback<History> {
+                override fun setupInitComponent(view: View, data: History) {
+                    view.findViewById<TextView>(R.id.txt_namaTempat_history).text = data.name
+                    view.findViewById<TextView>(R.id.txt_status_history).text = data.status
+                    view.findViewById<TextView>(R.id.txt_ratingTempat_history).text = data.rate
+                    view.findViewById<TextView>(R.id.txt_jarak_history).text = data.jarak
+                }
+
+                override fun onItemClicked(data: History) {
+
+                }
+
+                override fun onItemLongClicked(data: History) {
+
+                }
+            }
+
+            rv_history!!.injector<History>()
+                .addData(historyList)
+                .addCustomView(R.layout.item_list_history)
+                .addEmptyView(null)
+                .addCallback(adapterCallback)
+                .createLayoutLinearHorizontal(false)
+                .createAdapter()
+                .build(rv_history)
 
         }
     }

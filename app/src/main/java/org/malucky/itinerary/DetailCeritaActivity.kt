@@ -18,7 +18,7 @@ class DetailCeritaActivity : BaseActivity() {
 
     override fun onActivityCreated() {
 
-        toolbar_detail_cerita.setTitle("Detail Cerita")
+        toolbar_detail_cerita.setTitle(getString(R.string.detail_cerita))
         toolbar_detail_cerita.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         toolbar_detail_cerita.setNavigationOnClickListener {
             finish()

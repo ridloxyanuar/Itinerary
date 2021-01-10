@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".EditProfilActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +52,7 @@
             android:paddingTop="8dp"
             android:paddingRight="15dp"
             android:paddingBottom="8dp"
-            android:text="Ambil Foto"
+            android:text="@string/ambil_foto"
             android:textColor="@color/colorPrimary"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/iv_avatar_edit"
@@ -69,7 +70,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Nama Lengkap"
+        android:hint="@string/nama_lengkap"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -82,7 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Simpan"
+        android:text="@string/simpan"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/et_setup_nama"

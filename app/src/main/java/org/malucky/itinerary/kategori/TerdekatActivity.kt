@@ -36,7 +36,7 @@ class TerdekatActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIt
         R.layout.activity_terdekat
 
     override fun onActivityCreated() {
-        toolbar_terdekat.setTitle("Terdekat Dengan Kamu")
+        toolbar_terdekat.setTitle(getString(R.string.terdekat))
         setSupportActionBar(toolbar_terdekat)
 
         toolbar_terdekat.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

@@ -29,7 +29,7 @@ class AtmActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItemCli
     override fun getView(): Int = R.layout.activity_atm
 
     override fun onActivityCreated() {
-        toolbarATM.setTitle("SPBU")
+        toolbarATM.setTitle(getString(R.string.spbu))
         toolbarATM.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
 
         toolbarATM.setNavigationOnClickListener {

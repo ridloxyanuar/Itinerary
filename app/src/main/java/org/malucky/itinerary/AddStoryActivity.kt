@@ -21,7 +21,7 @@ class AddStoryActivity : BaseActivity() {
     override fun getView(): Int = R.layout.activity_add_story
 
     override fun onActivityCreated() {
-        toolbar_story.setTitle("Tambah Ceritamu")
+        toolbar_story.setTitle(getString(R.string.tambah_ceritamu))
         setSupportActionBar(toolbar_story)
 
         toolbar_story.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

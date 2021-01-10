@@ -38,7 +38,7 @@ class BudayaActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationItem
     override fun getView(): Int = R.layout.activity_budaya
 
     override fun onActivityCreated() {
-        toolbar_budaya.setTitle("Kesenian Sekitar Kamu")
+        toolbar_budaya.setTitle(getString(R.string.budaya))
         setSupportActionBar(toolbar_budaya)
 
         toolbar_budaya.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

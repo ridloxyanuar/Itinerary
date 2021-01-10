@@ -17,24 +17,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="16sp"
             fontPath="fonts/Muli-Bold.ttf"/>
 
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:layout_marginRight="8dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_baseline_settings_24"
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_version"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:text=""-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="10sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginRight="8dp"/>-->
     </RelativeLayout>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -88,7 +98,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal">
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:text="Edit Akun"
+                        android:text="@string/edit_akun"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
                         android:gravity="center"
@@ -101,7 +111,7 @@
                         android:layout_marginRight="5dp"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:text="Keluar"
+                        android:text="@string/keluar"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
                         android:gravity="center"
@@ -137,7 +147,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:textColor="@color/mainTeks"
-                    android:text="Cerita Perjalananmu"/>
+                    android:text="@string/cerita_perjalananmu"/>
 
                 <TextView
                     android:id="@+id/tv_add_story"
@@ -148,7 +158,7 @@
                     android:gravity="right"
                     android:textColor="@color/Teks2"
                     android:textStyle="bold"
-                    android:text="+ Cerita" />
+                    android:text="@string/cerita" />
 
                 </LinearLayout>
 
@@ -168,7 +178,7 @@
                             android:layout_marginTop="16dp"
                             android:textStyle="bold"
                             android:textColor="@color/mainTeks"
-                            android:text="Petualanganmu"/>
+                            android:text="@string/petualanganmu"/>
 
                         <TextView
                             android:id="@+id/tv_all_journey"
@@ -178,12 +188,42 @@
                             android:layout_marginTop="16dp"
                             android:gravity="right"
                             android:textStyle="bold"
-                            android:text="Selengkapnya"
+                            android:text="@string/selengkapnya"
                             android:textColor="@color/Teks2"/>
                 </LinearLayout>
 
                 <com.frogobox.recycler.FrogoRecyclerView
                     android:id="@+id/rv_ur_journey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/mainTeks"
+                        android:text="@string/history"/>
+
+                    <TextView
+                        android:id="@+id/tv_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp"
+                        android:gravity="right"
+                        android:textStyle="bold"
+                        android:text="@string/selengkapnya"
+                        android:textColor="@color/Teks2"/>
+                </LinearLayout>
+
+                <com.frogobox.recycler.FrogoRecyclerView
+                    android:id="@+id/rv_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

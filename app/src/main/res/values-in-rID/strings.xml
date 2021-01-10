@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iTravel</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="lang">Bahasa</string>
+    <string name="petualanganmu">Petualanganmu</string>
+    <string name="pilih_bahasa">Pilih Bahasa</string>
+    <string name="fullname">nama lengkap</string>
+    <string name="profile">Profile</string>
+    <string name="edit_akun">Edit Akun</string>
+    <string name="keluar">Keluar</string>
+    <string name="cerita_perjalananmu">Cerita Perjalananmu</string>
+    <string name="cerita">+ Cerita</string>
+    <string name="selengkapnya">Selengkapnya</string>
+    <string name="history">History</string>
+    <string name="setting">Pengaturan</string>
+    <string name="set_bahasa">Bahasa</string>
+    <string name="set_tema">Tema</string>
+    <string name="about">Tentang Aplikasi</string>
+    <string name="ket_bahasa">Pengaturan Bahasa Aplikasi iTravel</string>
+    <string name="ket_tema">Pengaturan Tema Aplikasi iTravel</string>
+    <string name="apa_cerita_kamu">Apa Cerita Kamu ?</string>
+    <string name="tambah_cerita">Tambah Cerita</string>
+    <string name="judul">Judul</string>
+    <string name="lokasi_kamu">Lokasi Kamu</string>
+    <string name="pilihan_lokasi">Pilihan Lokasi</string>
+    <string name="tambah">+ Tambah</string>
+    <string name="buat_jadwal">Buat Jadwal</string>
+    <string name="ambil_foto">Ambil Foto</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="simpan">Simpan</string>
+    <string name="masukkan_email">Masukkan Email</string>
+    <string name="atur_ulang">Atur Ulang</string>
+    <string name="kembali">Kembali</string>
+    <string name="username_atau_email">Username atau email</string>
+    <string name="password">Password</string>
+
+    <string name="lupa_kata_sandi">Lupa Kata Sandi ?</string>
+    <string name="masuk_menggunakan_akun_google">Masuk Menggunakan Akun Google</string>
+    <string name="atau">atau</string>
+    <string name="belum_punya_akun">Belum Punya Akun ?</string>
+
+    <string name="alamat_email">Alamat Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="ulangi_kata_sandi">Ulangi Kata Sandi</string>
+    <string name="daftar">Daftar</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="masuk">Masuk</string>
+    <string name="terang">Terang</string>
+    <string name="gelap">Gelap</string>
+
+
+    <string name="tambah_lokasi">Tambah Lokasi</string>
+    <string name="notfound">Lokasi Tidak ditemukan</string>
+    <string name="kategori_terdekat">Terdekat</string>
+    <string name="kategori_rental">Rental Mobil</string>
+    <string name="kategori_kuliner">Kuliner</string>
+    <string name="kategori_budaya">Budaya</string>
+    <string name="kategori_spbu">SPBU</string>
+    <string name="kategori_jajan">Oleh-Oleh</string>
+    <string name="spbu">SPBU</string>
+    <string name="budaya">Kesenian Sekitar Kamu</string>
+    <string name="rental">Rental Mobil</string>
+    <string name="jajan">Oleh-Oleh Sekitar Kamu</string>
+    <string name="kuliner">Kuliner Sekitar Kamu</string>
+    <string name="terdekat">Terdekat Dengan Kamu</string>
+    <string name="tambah_ceritamu">Tambah Ceritamu</string>
+    <string name="hasil_rekomendasi">Hasil Rekomendasi</string>
+    <string name="buat_jadwal_baru">Buat Jadwal Baru</string>
+    <string name="save_to_my_journey">Save to my journey</string>
+    <string name="hasil_rekomendasi_berdasarkan_jarak">Hasil Rekomendasi Berdasarkan Jarak</string>
+    <string name="hasil_rekomendasi_berdasarkan_rating">Hasil Rekomendasi Berdasarkan Rating</string>
+    <string name="atur_perjalanan">Atur Perjalanan</string>
+    <string name="detail_lokasi">Detail Lokasi</string>
+    <string name="detail_cerita">Detail Cerita</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="quit">Keluar</string>
+    <string name="are_u_sure">Apa Anda Yakin Untuk Keluar Dari Aplikasi Ini?</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="mau_kemana_hari_ini">Mau Kemana Hari Ini?</string>
+    <string name="tempat_populer">Tempat Populer</string>
+    <string-array name="choice_items">
+        <item>Rekomendasi Berdasarkan Jarak</item>
+        <item>Rekomendasi Berdasarkan Rating</item>
+    </string-array>
+</resources>

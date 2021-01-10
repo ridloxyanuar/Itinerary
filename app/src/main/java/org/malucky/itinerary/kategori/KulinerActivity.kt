@@ -47,7 +47,7 @@ class KulinerActivity : BaseActivity(), NearbyViews, NearbyAdapter.OnLocationIte
         R.layout.activity_kuliner
 
     override fun onActivityCreated() {
-        toolbar_kuliner.setTitle("Kuliner Sekitar Kamu")
+        toolbar_kuliner.setTitle(getString(R.string.kuliner))
         setSupportActionBar(toolbar_terdekat)
 
         toolbar_kuliner.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)

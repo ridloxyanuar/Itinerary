@@ -16,9 +16,9 @@ android {
         applicationId "org.malucky.itinerary"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
+        versionCode 4
         multiDexEnabled true
-        versionName "3.0"
+        versionName "4.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

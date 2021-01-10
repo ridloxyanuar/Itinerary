@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "895757102956",
+    "firebase_url": "https://itinerary-befc0.firebaseio.com",
+    "project_id": "itinerary-befc0",
+    "storage_bucket": "itinerary-befc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895757102956:android:f2da93406b7bc2758d4d49",
+        "android_client_info": {
+          "package_name": "org.malucky.itinerary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895757102956-ptlncai4j5ciqg69f7oi98evoch1hcp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.malucky.itinerary",
+            "certificate_hash": "7ba5583ddc873265044999931795f98199cd22c3"
+          }
+        },
+        {
+          "client_id": "895757102956-oaenjop9dbq2h5ooe1jnq3bks5n1a5sj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEdvXhqgUw_eqefj62Hsh9RBFy4QRxPdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895757102956-oaenjop9dbq2h5ooe1jnq3bks5n1a5sj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

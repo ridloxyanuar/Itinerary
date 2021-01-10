@@ -8,12 +8,17 @@ import android.view.View
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_my_journey.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.malucky.itinerary.data.History
 import org.malucky.itinerary.data.Journey
+import org.malucky.itinerary.data.Note
+import java.util.*
 
 class MyJourneyActivity : BaseActivity() {
 
@@ -22,7 +27,7 @@ class MyJourneyActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        toolbar_my_journey.setTitle("Petualanganmu")
+        toolbar_my_journey.setTitle(getString(R.string.petualanganmu))
         toolbar_my_journey.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         toolbar_my_journey.setNavigationOnClickListener {
             finish()
@@ -50,6 +55,10 @@ class MyJourneyActivity : BaseActivity() {
                     journeyList.add(journey)
                 }
             }
+
+            val userID = FirebaseAuth.getInstance().currentUser!!.uid
+            firebaseFirestore = FirebaseFirestore.getInstance()
+            
             //adapter
             val adapterCallback = object : FrogoAdapterCallback<Journey> {
                 override fun setupInitComponent(view: View, data: Journey) {
@@ -60,13 +69,24 @@ class MyJourneyActivity : BaseActivity() {
                 }
 
                 override fun onItemClicked(data: Journey) {
-                    val dialog = MaterialDialog(this@MyJourneyActivity).title(null,"Petualangamu")
+                    val dialog = MaterialDialog(this@MyJourneyActivity).title(null,getString(R.string.petualanganmu))
                         .message(null, "Apakah " + data.name + " Sudah Dikunjungi ?")
                         .negativeButton(null,"Belum") {
                             it.dismiss()
                         }
                         .positiveButton(null,"Sudah",{
+                            val history = History(data.name, data.rate,data.jarak , "Sudah Dikunjungi",false, Timestamp(Date()), userID)
 
+                            firebaseFirestore.collection("History")
+                                .add(history)
+                                .addOnSuccessListener {
+                                    finish()
+                                    Log.d("OnSucces", "History added successfully")
+                                }
+                                .addOnFailureListener {
+                                    Log.d("OnFailure", it.localizedMessage!!)
+
+                                }
                             it.dismiss()
                         }).noAutoDismiss().cancelable(false)
                     dialog.show()

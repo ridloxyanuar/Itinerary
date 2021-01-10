@@ -41,24 +41,24 @@ class KategoriAdapter(var context: Context, var arrayList: ArrayList<Kategori>) 
         holder.titles.text = kategori.ket
 
         holder.itemView.setOnClickListener {
-            if(kategori.ket.equals("Terdekat")){
+            if(kategori.ket.equals("Terdekat") || kategori.ket.equals("Nearby")){
                 val nearbyIntent = Intent(context, TerdekatActivity::class.java)
                 context.startActivity(nearbyIntent)
-            }else if (kategori.ket.equals("Kuliner")){
+            }else if (kategori.ket.equals("Kuliner") || kategori.ket.equals("Culinary")){
                 val kulinerIntent = Intent(context, KulinerActivity::class.java)
                 context.startActivity(kulinerIntent)
-            }else if (kategori.ket.equals("Rental Mobil")){
+            }else if (kategori.ket.equals("Rental Mobil") || kategori.ket.equals("Rent Car")){
 //                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
                 val hotelIntent = Intent(context, HotelsActivity::class.java)
                 context.startActivity(hotelIntent)
-            }else if (kategori.ket.equals("Budaya")){
+            }else if (kategori.ket.equals("Budaya") || kategori.ket.equals("Culture")){
                 val budayaIntent = Intent(context, BudayaActivity::class.java)
                 context.startActivity(budayaIntent)
-            }else if (kategori.ket.equals("SPBU")){
+            }else if (kategori.ket.equals("SPBU") || kategori.ket.equals("Gas Station")){
                 val atmIntent = Intent(context, AtmActivity::class.java)
                 context.startActivity(atmIntent)
 //                Toast.makeText(context, "Maaf, Fitur saat ini belum tersedia", Toast.LENGTH_SHORT).show()
-            }else if (kategori.ket.equals("Oleh-Oleh")){
+            }else if (kategori.ket.equals("Oleh-Oleh") || kategori.ket.equals("Souvenirs")){
                 val jajanIntent = Intent(context, JajanActivity::class.java)
                 context.startActivity(jajanIntent)
             }

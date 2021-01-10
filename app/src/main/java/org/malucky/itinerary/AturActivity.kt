@@ -45,7 +45,7 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleC
     override fun getView(): Int = R.layout.activity_atur
 
     override fun onActivityCreated() {
-        toolbar_atur.setTitle("Hasil Rekomendasi")
+        toolbar_atur.setTitle(getString(R.string.hasil_rekomendasi))
         setSupportActionBar(toolbar_atur)
 
         toolbar_atur.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
@@ -155,7 +155,7 @@ class AturActivity : BaseActivity(), TimeLineAdapter.OnItemClickListner, SingleC
         storageReference = FirebaseStorage.getInstance().reference
 
         val pil = list!![position]
-        if (pil!!.equals("Rekomendasi Berdasarkan Jarak")){
+        if (pil!!.equals("Rekomendasi Berdasarkan Jarak") || pil!!.equals("Recommendation by Distance")){
             //jarak
             val getIntentStringChartLocation = getIntent().getStringExtra("EXTRA_NAME")
             val listType = object : TypeToken<ArrayList<CartLocation>?>() {}.type

@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_itraveler"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".kategori.AtmActivity"></activity>
+        <activity android:name=".Settings.TemaActivity"></activity>
+        <activity android:name=".Settings.BahasaActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".kategori.AtmActivity" />
         <activity android:name=".MyJourneyActivity" />
         <activity android:name=".DetailCeritaActivity" />
         <activity android:name=".kategori.HotelsActivity" />

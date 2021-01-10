@@ -37,7 +37,10 @@ class SlideAdapter(data: List<ResultsItem?>) : SliderViewAdapter<SlideAdapter.Sl
     override fun getCount(): Int {
         if (ambilData.isEmpty()){
             return 0
-        }else{
+        }else if(ambilData.size < 5){
+            return ambilData.size
+        }
+        else{
             return 5
         }
 
